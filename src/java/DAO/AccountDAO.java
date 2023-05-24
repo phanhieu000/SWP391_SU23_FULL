@@ -20,6 +20,8 @@ public class AccountDAO extends DBContext {
                     + "      ,a.[password]\n"
                     + "      ,a.[email]\n"
                     + "      ,a.[address]\n"
+                    + "      ,a.[firstName]\n"
+                    + "      ,a.[lastName]\n"
                     + "      ,a.[phone]\n"
                     + "      ,a.[birthday]\n"
                     + "      ,a.[createDate]\n"
@@ -34,7 +36,7 @@ public class AccountDAO extends DBContext {
 
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, userName);
-            st.setString(2, password);
+            st.setString(2, Common.convertPassToMD5(password));
 
             ResultSet rs = st.executeQuery();
 
@@ -42,14 +44,66 @@ public class AccountDAO extends DBContext {
 
                 Role role = new Role(rs.getInt("rid"), rs.getString("role"), rs.getDate("createDate_Role"));
 
-                return new Account(rs.getInt("id"), rs.getString("userName"), rs.getString("password"), rs.getString("email"), rs.getString("address")
-                        , rs.getString("phone"), rs.getDate("birthday"), rs.getDate("createDate"), rs.getBoolean("isBlock"), rs.getBoolean("isVerify")
-                        , role);
+                return new Account(rs.getInt("id"), rs.getString("userName"), rs.getString("password"), rs.getString("email"), rs.getString("address"),
+                        rs.getString("firstName"), rs.getString("lastName"), rs.getString("phone"), rs.getDate("birthday"), rs.getDate("createDate"),
+                        rs.getBoolean("isBlock"), rs.getBoolean("isVerify"),
+                        role);
             }
 
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
+    }
+
+    public boolean update(Account a) {
+        try {
+
+            String sql = "UPDATE [dbo].[Account]\n"
+                    + "   SET [firstName] = ?\n"
+                    + "      ,[lastName] = ?\n"
+                    + "      ,[address] = ?\n"
+                    + "      ,[phone] = ?\n"
+                    + "      ,[birthday] = ?\n"
+                    + " WHERE [id] = ?";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, a.getFirstName());
+            st.setString(2, a.getLastName());
+            st.setString(3, a.getAddress());
+            st.setString(4, a.getPhone());
+            st.setDate(5, a.getBirthday());
+            st.setInt(6, a.getId());
+
+            st.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+    public boolean changePass(Account a) {
+        try {
+
+            String sql = "UPDATE [dbo].[Account]\n"
+                    + "   SET [password] = ?\n"
+                    + " WHERE [id] = ?";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, a.getPassword());
+            st.setInt(2, a.getId());
+
+            st.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
     }
 }

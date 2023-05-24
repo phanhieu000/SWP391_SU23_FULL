@@ -59,6 +59,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box
 }
 body {
     background-color: #ffffff;
@@ -6077,8 +6078,11 @@ blockquote span:before {
     border-bottom: 5px solid transparent;
 }
 /*Account*/
-.sportsmagazine-account-tabs,.sportsmagazine-account,.sportsmagazine-account form,.sportsmagazine-account form ul li input[type="email"],
-.sportsmagazine-account form ul li input[type="text"],.sportsmagazine-upload-photo figure img {
+.sportsmagazine-account-tabs,.sportsmagazine-account,.sportsmagazine-account form,
+.sportsmagazine-account form ul li input[type="email"],
+.sportsmagazine-account form ul li input[type="text"],
+.sportsmagazine-account form ul li input[type="password"],
+.sportsmagazine-upload-photo figure img {
     float: left;
     width: 100%;
 }
@@ -6151,6 +6155,7 @@ blockquote span:before {
     font-weight: bold;
 }
 .sportsmagazine-account form ul li input[type="email"],
+.sportsmagazine-account form ul li input[type="password"],
 .sportsmagazine-account form ul li input[type="text"] {
     height: 40px;
     background-color: #eeeeee;
@@ -6159,7 +6164,8 @@ blockquote span:before {
     font-style: italic;
     padding-left: 21px;
 }
-.sportsmagazine-account form ul li input[type="submit"] {
+.sportsmagazine-account form ul li input[type="submit"],
+.sportsmagazine-account form ul li input[type="button"] {
     text-transform: uppercase;
     background-color: #27282a;
     color: #fff;

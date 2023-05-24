@@ -16,6 +16,30 @@
         <servlet-name>Register_Controller</servlet-name>
         <servlet-class>Controller.Register_Controller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Profiles_Controller</servlet-name>
+        <servlet-class>Controller.Profiles_Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Checkout_Controller</servlet-name>
+        <servlet-class>Controller.Cart.Checkout_Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Post_Controlelr</servlet-name>
+        <servlet-class>Controller.Post.Post_Controlelr</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Post_Detail_Controller</servlet-name>
+        <servlet-class>Controller.Post.Post_Detail_Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Shop_Controller</servlet-name>
+        <servlet-class>Controller.Shop.Shop_Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Shop_Detail_Controller</servlet-name>
+        <servlet-class>Controller.Shop.Shop_Detail_Controller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login_Controller</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -31,6 +55,30 @@
     <servlet-mapping>
         <servlet-name>Register_Controller</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Profiles_Controller</servlet-name>
+        <url-pattern>/profiles</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Checkout_Controller</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Post_Controlelr</servlet-name>
+        <url-pattern>/post</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Post_Detail_Controller</servlet-name>
+        <url-pattern>/postdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Shop_Controller</servlet-name>
+        <url-pattern>/shop</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Shop_Detail_Controller</servlet-name>
+        <url-pattern>/shopdetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

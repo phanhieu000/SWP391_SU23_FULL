@@ -7,6 +7,7 @@
     <!--// MainSection \\-->
     <jsp:include page="bigNavbar.jsp" />
     <!--// MainSection \\-->
+    
 
 </header>
 

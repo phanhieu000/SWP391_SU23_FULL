@@ -39,20 +39,28 @@
                                 </li>
                             </ul>
                             <h5>Subtotal <span class="sportsmagazine-color">$1343</span></h5>
-                            <div class="sportsmagazine-cart-link"><a href="#" class="sportsmagazine-cartbox-btn sportsmagazine-bgcolorhover"><i class="flaticon-tool"></i> Go to Checkout</a></div>
+                            <div class="sportsmagazine-cart-link">
+                                <a href="cart" class="sportsmagazine-cartbox-btn sportsmagazine-bgcolorhover">
+                                    <i class="flaticon-tool"></i> Go Cart
+                                </a>
+                                <a href="checkout" class="sportsmagazine-cartbox-btn sportsmagazine-bgcolorhover">
+                                    <i class="flaticon-tool"></i> Go to Checkout
+                                    
+                                </a>
+                                
+                            </div>
                         </div>
                     </li>
-                    <!--                    <li><i class="fa fa-user"></i> <a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
-                                        <li><i class="fa fa-sign-in"></i> <a href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a></li>-->
-                    <c:if test="${account != null}">
+                     <c:if test="${account != null}">
                         <li><i class="fa fa-user"></i> <a href="profiles" >Hello, ${account.userName}</a></li>
+                        <li><i class="fa fa-unlock-alt"></i> <a href="changePass">Change Password</a></li>
                         <li><i class="fa fa-sign-out"></i> <a href="logout">Logout</a></li>
-                    </c:if>
+                        </c:if>
 
                     <c:if test="${account == null}">
                         <li><i class="fa fa-user"></i> <a href="login" >Login</a></li>
                         <li><i class="fa fa-user-plus"></i> <a href="register">Register</a></li>
-                    </c:if>
+                        </c:if>
 
                 </ul>
             </aside>

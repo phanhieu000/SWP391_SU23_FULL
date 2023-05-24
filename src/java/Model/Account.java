@@ -9,6 +9,8 @@ public class Account {
     private String password;
     private String email;
     private String address;
+    private String firstName;
+    private String lastName;
     private String phone;
     private Date birthday;
     private Date createDate;
@@ -19,11 +21,13 @@ public class Account {
     public Account() {
     }
 
-    public Account(int id, String userName, String password, String email, String address, String phone, Date birthday, Date createDate, Boolean block, Boolean verify, Role role) {
+    public Account(int id, String userName, String password, String email, String address, String firstName, String lastName, String phone, Date birthday, Date createDate, Boolean block, Boolean verify, Role role) {
         this.id = id;
         this.userName = userName;
         this.password = password;
         this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.phone = phone;
         this.birthday = birthday;
@@ -31,6 +35,38 @@ public class Account {
         this.block = block;
         this.verify = verify;
         this.role = role;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Boolean getBlock() {
+        return block;
+    }
+
+    public void setBlock(Boolean block) {
+        this.block = block;
+    }
+
+    public Boolean getVerify() {
+        return verify;
+    }
+
+    public void setVerify(Boolean verify) {
+        this.verify = verify;
     }
 
     public int getId() {

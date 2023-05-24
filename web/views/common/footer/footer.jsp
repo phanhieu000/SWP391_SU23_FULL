@@ -62,7 +62,7 @@
     <!--// Footer Widget \\-->
 
     <!--// CopyRight \\-->
-    <div class="sportsmagazine-copyright">
+<!--    <div class="sportsmagazine-copyright">
         <div class="container">
             <div class="row">
                 <aside class="col-md-6 sportsmagazine-copyright-left"><p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p></aside>
@@ -74,7 +74,7 @@
                 </aside>
             </div>
         </div>
-    </div>
+    </div>-->
     <!--// CopyRight \\-->
 
 </footer>

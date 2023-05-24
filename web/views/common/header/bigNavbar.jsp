@@ -15,14 +15,9 @@
                         </div>
                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Home</a>
-                                    <ul class="sportsmagazine-dropdown-menu">
-                                        <li><a href="index-2.html">Home One</a></li>
-                                        <li><a href="index-two.html">Home Two</a></li>
-
-                                    </ul>
-                                </li>
-                                <li class="sportsmagazine-megamenu-li"><a href="#">FEATURES</a>
+                                <li><a href="home">Home</a></li>
+                                <li><a href="shop">Shop</a></li>
+                                <li class="sportsmagazine-megamenu-li"><a href="post">Post</a>
                                     <ul class="sportsmagazine-megamenu">
                                         <li class="row">
                                             <div class="col-md-2">
@@ -66,34 +61,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="#">PLAYERS</a>
-                                    <ul class="sportsmagazine-dropdown-menu">
-                                        <li><a href="player-grid.html">Player Grid</a>
-                                            <ul class="sportsmagazine-dropdown-menu">
-                                                <li><a href="player-grid.html">Player Grid W/O/S</a></li>
-                                                <li><a href="player-grid-wls.html">Player Grid W/L/S</a></li>
-                                                <li><a href="player-grid-wrs.html">Player Grid W/R/S</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="player-modren.html">Player Modren</a>
-                                            <ul class="sportsmagazine-dropdown-menu">
-                                                <li><a href="player-modren.html">Player Modren W/O/S</a></li>
-                                                <li><a href="player-modren-wls.html">Player Modren W/L/S</a></li>
-                                                <li><a href="player-modren-wrs.html">Player Modren W/R/S</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="player-list.html">Player List</a></li>
-                                        <li><a href="fullstanding.html">Full Standing</a></li>
-                                        <li><a href="overview.html">Overview</a></li>
-                                        <li><a href="roster.html">Roster</a></li>
-                                        <li><a href="player-detail.html">Player Detail</a>
-                                            <ul class="sportsmagazine-dropdown-menu">
-                                                <li><a href="player-detail.html">Player Detail W/L/S</a></li>
-                                                <li><a href="player-detail-wls.html">Player Detail W/R/S</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                                
                                 <li><a href="#">OUR NEWS</a>
                                     <ul class="sportsmagazine-dropdown-menu">
                                         <li><a href="blog-grid.html">Blog Grid</a>
