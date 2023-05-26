@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAO;
+package DAL;
 
 import Model.Account;
 import Model.Role;
@@ -104,6 +104,58 @@ public class AccountDAO extends DBContext {
             System.out.println(e);
         }
 
+        return false;
+    }
+
+    public boolean checkExist(String userName) {
+        try {
+
+            String sql = "SELECT a.[userName]\n"
+                    + "    FROM [dbo].[Account] a\n"
+                    + "     WHERE a.userName = ?";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, userName);
+
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public boolean register(Account a) {
+        try {
+
+            String sql = "INSERT INTO [dbo].[Account]	([userName], [password] , [email] , [firstName] , [lastName] , [address] , [phone] , [birthday] , [createDate] , [isBlock] , [isVerify] , [rid])\n"
+                    + "VALUES\n"
+                    + "		(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, a.getUserName());
+            st.setString(2, Common.convertPassToMD5(a.getPassword()));
+            st.setString(3, a.getEmail());
+            st.setString(4, a.getFirstName());
+            st.setString(5, a.getLastName());
+            st.setString(6, a.getAddress());
+            st.setString(7, a.getPhone());
+            st.setDate(8, a.getBirthday());
+            st.setDate(9, a.getCreateDate());
+            st.setBoolean(10, false);
+            st.setBoolean(11, false);
+            st.setInt(12, 2);
+            
+            st.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e + "hihi");
+        }
         return false;
     }
 }

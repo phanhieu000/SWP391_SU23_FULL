@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>SportsMagazine login register</title>
+        <title>Register</title>
 
         <!-- Css Files -->
         <link href="views/css/bootstrap.css" rel="stylesheet">
@@ -43,6 +43,7 @@
                 justify-content: center
             }
 
+            .sportsmagazine-login-form form ul li input[type="email"],
             .sportsmagazine-login-form form ul li input[type="password"],
             .sportsmagazine-login-form form ul li input[type="text"] {
                 margin: 0px;
@@ -53,7 +54,7 @@
                 padding-left: 21px;
                 font-style: italic;
             }
-
+            .sportsmagazine-login-form form ul li input[type="email"],
             .sportsmagazine-login-form form ul li input[type="password"],
             .sportsmagazine-login-form form ul li input[type="text"] {
                 float: left;
@@ -81,20 +82,25 @@
                             <div class="col-md-6">
                                 <div class="sportsmagazine-login-form sportsmagazine-register-form">
                                     <h4>Register Your Account Now</h4>
-                                    <form>
+                                    <form action="" method="POST">
                                         <ul>
                                             <li>
+                                                <label class="form-label">Your UserName</label>
+                                                <input type="text" placeholder="Enter An UserName" name="userName" >
+                                            </li>
+                                            <li>
                                                 <label class="form-label">Your Email</label>
-                                                <input type="text" value="Enter here" >
+                                                <input type="email" placeholder="Enter Your Email To Verify !" name="email">
                                             </li>
                                             <li>
                                                 <label class="form-label">Password</label>
-                                                <input type="text" value="Enter here" >
+                                                <input type="password" placeholder="Enter Password" name="password">
                                             </li>
                                             <li>
                                                 <label class="form-label">Confirm Password</label>
-                                                <input type="text" value="Enter here">
+                                                <input type="password" placeholder="Enter Comfirm Password">
                                             </li>
+
                                             <li class="d-flex justify-content-center">
                                                 <label class="submit-border">
                                                     <input type="submit" value="Register">

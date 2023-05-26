@@ -1,9 +1,12 @@
 package Model;
 
 import java.sql.Date;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class Product {
+
     private int id;
     private String sku;
     private String name;
@@ -14,17 +17,15 @@ public class Product {
     private Boolean active;
     private Category category;
     private Brand brand;
-    private Specification spectification;
     private Description description;
     private List<Size> size;
     private List<Color> color;
     private List<Image> image;
-    private List<Comment> comment;
 
     public Product() {
     }
 
-    public Product(int id, String sku, String name, double price, int quantity, Date createDate, Date updateDate, Boolean active, Category category, Brand brand, Specification spectification, Description description, List<Size> size, List<Color> color, List<Image> image, List<Comment> comment) {
+    public Product(int id, String sku, String name, double price, int quantity, Date createDate, Date updateDate, Boolean active, Category category, Brand brand, Description description, List<Size> size, List<Color> color, List<Image> image) {
         this.id = id;
         this.sku = sku;
         this.name = name;
@@ -35,15 +36,11 @@ public class Product {
         this.active = active;
         this.category = category;
         this.brand = brand;
-        this.spectification = spectification;
         this.description = description;
         this.size = size;
         this.color = color;
         this.image = image;
-        this.comment = comment;
     }
-
-    
 
     public int getId() {
         return id;
@@ -125,14 +122,6 @@ public class Product {
         this.brand = brand;
     }
 
-    public Specification getSpectification() {
-        return spectification;
-    }
-
-    public void setSpectification(Specification spectification) {
-        this.spectification = spectification;
-    }
-
     public Description getDescription() {
         return description;
     }
@@ -165,15 +154,16 @@ public class Product {
         this.image = image;
     }
 
-    public List<Comment> getComment() {
-        return comment;
+    public String getFormatPrice() {
+        Locale localeVN = new Locale("vi", "VN");
+        NumberFormat vn = NumberFormat.getInstance(localeVN);
+        return vn.format(this.price);
     }
-
-    public void setComment(List<Comment> comment) {
-        this.comment = comment;
-    }
-
-   
     
+    public String getFormatPriceFake() {
+        Locale localeVN = new Locale("vi", "VN");
+        NumberFormat vn = NumberFormat.getInstance(localeVN);
+        return vn.format(this.price * 1.3);
+    }
 
 }

@@ -4,6 +4,7 @@
     Author     : phanh
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,57 +102,17 @@
                             <!--// Fixture Slider \\-->
                             <div class="col-md-12">
                                 <div class="sportsmagazine-fixture-slider">
+                                    <c:forEach items="${product}" var="item">
+                                        <div class="sportsmagazine-fixture-slider-layer">
+                                            <time datetime="2008-02-14 20:00">${item.name}</time>
+                                            <ul class="sportsmagazine-bgcolor">
+                                                <li class="first-child">Price: <span>${item.formatPrice} Đ</span></li>
+                                                <li>Size: <span>${item.size.size()} items</span></li>
+                                                <li>Color: <span>${item.color.size()} items</span></li>
 
-                                    <div class="sportsmagazine-fixture-slider-layer">
-                                        <time datetime="2008-02-14 20:00">August 23, 2016</time>
-                                        <ul class="sportsmagazine-bgcolor">
-                                            <li class="first-child">ARS <span>03</span></li>
-                                            <li>CHL <span>02</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="sportsmagazine-fixture-slider-layer">
-                                        <time datetime="2008-02-14 20:00">August 25, 2016</time>
-                                        <ul class="sportsmagazine-bgcolor">
-                                            <li class="first-child">BRC <span>05</span></li>
-                                            <li>RM <span>02</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="sportsmagazine-fixture-slider-layer">
-                                        <time datetime="2008-02-14 20:00">August 28, 2016</time>
-                                        <ul class="sportsmagazine-bgcolor">
-                                            <li class="first-child">CIT <span>03</span></li>
-                                            <li>KIN <span>03</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="sportsmagazine-fixture-slider-layer">
-                                        <time datetime="2008-02-14 20:00">August 31, 2016</time>
-                                        <ul class="sportsmagazine-bgcolor">
-                                            <li class="first-child">ST <span>00</span></li>
-                                            <li>FRA <span>01</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="sportsmagazine-fixture-slider-layer sportsmagazine-fixture-booked">
-                                        <time datetime="2008-02-14 20:00">September 03, 2016</time>
-                                        <ul class="sportsmagazine-bgcolor">
-                                            <li class="first-child"><small>SPA</small> VS <span>RM</span></li>
-                                            <li>Full Booked</li>
-                                        </ul>
-                                    </div>
-                                    <div class="sportsmagazine-fixture-slider-layer">
-                                        <time datetime="2008-02-14 20:00">September 05, 2016</time>
-                                        <ul class="sportsmagazine-bgcolor">
-                                            <li class="first-child">ARS <span>03</span></li>
-                                            <li>CHL <span>02</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="sportsmagazine-fixture-slider-layer sportsmagazine-fixture-booked">
-                                        <time datetime="2008-02-14 20:00">December 31, 2016</time>
-                                        <ul class="sportsmagazine-bgcolor">
-                                            <li class="first-child"><small>SPA</small> VS <span>RM</span></li>
-                                            <li>Full Booked</li>
-                                        </ul>
-                                    </div>
-
+                                            </ul>
+                                        </div>
+                                    </c:forEach> 
                                 </div>
                             </div>
                             <!--// Fixture Slider \\-->
@@ -159,54 +120,25 @@
                             <!--// Content \\-->
                             <div class="col-md-8">
 
-                                <!--// Fancy Title \\--> <div class="sportsmagazine-fancy-title"><h2>Featured News</h2></div> <!--// Fancy Title \\-->
+                                <!--// Fancy Title \\--> <div class="sportsmagazine-fancy-title"><h2>New Product</h2></div> <!--// Fancy Title \\-->
                                 <!--// Featured Slider \\-->
                                 <div class="sportsmagazine-featured-slider">
-                                    <div class="sportsmagazine-featured-slider-layer">
-                                        <img src="views/extra-images/featured-slider-1.jpg" alt="">
-                                        <span class="sportsmagazine-black-transparent"></span>
-                                        <div class="sportsmagazine-featured-caption">
-                                            <h2>Fusce at molestie elit, sit amet Curabitur in tellus non risu illa vitae non nunc</h2>
-                                            <span class="sportsmagazine-color">03 December 2017 / John Maxwell</span>
+                                    <c:forEach items="${product}" var="item">
+                                        <div class="sportsmagazine-featured-slider-layer">
+                                            <img src="views/extra-images/featured-slider-1.jpg" alt="">
+                                            <span class="sportsmagazine-black-transparent"></span>
+                                            <div class="sportsmagazine-featured-caption">
+                                                <h2>${item.name} - ${item.category.title}</h2>
+                                                <span class="sportsmagazine-color">${item.formatPrice} vnd / 1</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="sportsmagazine-featured-slider-layer">
-                                        <img src="views/extra-images/featured-slider-2.jpg" alt="">
-                                        <span class="sportsmagazine-black-transparent"></span>
-                                        <div class="sportsmagazine-featured-caption">
-                                            <h2>Fusce at molestie elit, sit amet Curabitur in tellus non risu illa vitae non nunc</h2>
-                                            <span class="sportsmagazine-color">03 December 2017 / John Maxwell</span>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
+
+
                                 </div>
                                 <!--// Featured Slider \\-->
 
-                                <!--// Latest Match Result \\-->
-                                <div class="sportsmagazine-match-result">
-                                    <div class="sportsmagazine-match-title">
-                                        <h4>Latest Match Result</h4>
-                                        <span>Saturday, March 24th, 2016</span>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <img src="views/extra-images/latest-result-logo-1.png" alt="">
-                                            <h4><a href="fixture-detail.html">Yorkshire</a></h4>
-                                            <span>03 Mark Baily (21)</span>
-                                        </li>
-                                        <li class="sportsmagazine-match-score">
-                                            <h5>FINAL SCORE</h5>
-                                            <p><strong class="sportsmagazine-color">79</strong> <small>:</small> 73</p>
-                                        </li>
-                                        <li>
-                                            <img src="views/extra-images/latest-result-logo-2.png" alt="">
-                                            <h4><a href="fixture-detail.html">Sharks Club</a></h4>
-                                            <span>03 Mark Baily (21)</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!--// Latest Match Result \\-->
-
-                                <!--// Fancy Title \\--> <div class="sportsmagazine-fancy-title"><h2>Latest Blogs</h2></div> <!--// Fancy Title \\-->
+                                <!--// Fancy Title \\--> <div class="sportsmagazine-fancy-title"><h2>Latest Posts</h2></div> <!--// Fancy Title \\-->
                                 <!--// Blog's \\-->
                                 <div class="sportsmagazine-blog sportsmagazine-blog-grid">
                                     <ul class="row">
@@ -329,165 +261,23 @@
                                 </figure>
                                 <!--// Advertisement \\-->
 
-                                <!--// Fancy Title \\--> <div class="sportsmagazine-fancy-title"><h2>Popular Players</h2></div> <!--// Fancy Title \\-->
-                                <div class="sportsmagazine-player-slider">
 
-                                    <div class="sportsmagazine-player-slider-image">
-                                        <div class="sportsmagazine-player-image-layer">
-                                            <img src="views/extra-images/player-slider-image-1.png" alt="">
-                                            <div class="sportsmagazine-player-slider-caption">
-                                                <span>97</span>
-                                                <section>
-                                                    <h6><a href="fixture-detail.html">Micheal Darren</a></h6>
-                                                    <small>Forword</small>
-                                                </section>
-                                            </div>
-                                        </div>
-                                        <div class="sportsmagazine-player-image-layer">
-                                            <img src="views/extra-images/player-slider-image-2.png" alt="">
-                                            <div class="sportsmagazine-player-slider-caption">
-                                                <span>38</span>
-                                                <section>
-                                                    <h6><a href="fixture-detail.html">sarena Jordan</a></h6>
-                                                    <small>Defensive</small>
-                                                </section>
-                                            </div>
-                                        </div>
-                                        <div class="sportsmagazine-player-image-layer">
-                                            <img src="views/extra-images/player-slider-image-3.png" alt="">
-                                            <div class="sportsmagazine-player-slider-caption">
-                                                <span>97</span>
-                                                <section>
-                                                    <h6><a href="fixture-detail.html">Micheal Darren</a></h6>
-                                                    <small>Forword</small>
-                                                </section>
-                                            </div>
-                                        </div>
-                                        <div class="sportsmagazine-player-image-layer">
-                                            <img src="views/extra-images/player-slider-image-2.png" alt="">
-                                            <div class="sportsmagazine-player-slider-caption">
-                                                <span>10</span>
-                                                <section>
-                                                    <h6><a href="fixture-detail.html">Chris Marlon</a></h6>
-                                                    <small>Forword</small>
-                                                </section>
-                                            </div>
-                                        </div>
-                                        <div class="sportsmagazine-player-image-layer">
-                                            <img src="views/extra-images/player-slider-image-1.png" alt="">
-                                            <div class="sportsmagazine-player-slider-caption">
-                                                <span>97</span>
-                                                <section>
-                                                    <h6><a href="fixture-detail.html">Micheal Darren</a></h6>
-                                                    <small>Forword</small>
-                                                </section>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="sportsmagazine-player-slider-nav">
-                                        <div class="sportsmagazine-player-nav-layer">
-                                            <span>09</span>
-                                            <section>
-                                                <h6>Kieron strauss</h6>
-                                                <small>Forword</small>
-                                            </section>
-                                        </div>
-                                        <div class="sportsmagazine-player-nav-layer">
-                                            <span>38</span>
-                                            <section>
-                                                <h6>sarena Jordan</h6>
-                                                <small>Defensive</small>
-                                            </section>
-                                        </div>
-                                        <div class="sportsmagazine-player-nav-layer">
-                                            <span>97</span>
-                                            <section>
-                                                <h6>Micheal Darren</h6>
-                                                <small>Forword</small>
-                                            </section>
-                                        </div>
-                                        <div class="sportsmagazine-player-nav-layer">
-                                            <span>10</span>
-                                            <section>
-                                                <h6>Chris Marlon</h6>
-                                                <small>Forword</small>
-                                            </section>
-                                        </div>
-                                        <div class="sportsmagazine-player-nav-layer">
-                                            <span>09</span>
-                                            <section>
-                                                <h6>Kieron strauss</h6>
-                                                <small>Forword</small>
-                                            </section>
-                                        </div>
-                                    </div>
-
-                                </div>
 
                                 <!--// Fancy Title \\--> <div class="sportsmagazine-fancy-title"><h2>Club Media</h2></div> <!--// Fancy Title \\-->
                                 <div class="sportsmagazine-gallery sportsmagazine-fixture-gallery">
                                     <ul>
-                                        <li>
-                                            <figure>
-                                                <a data-fancybox-group="group" href="views/extra-images/gallery-modren-img1.jpg" class="fancybox"><img src="views/extra-images/gallery-modren-img1.jpg" alt=""><i class="icon-signs23"></i></a>
-                                                <span>12 Photos</span>
-                                                <figcaption>
-                                                    <h6><a href="#">The Champion Final will be played</a></h6>
-                                                    <time datetime="2008-02-14 20:00">May 17th, 2017</time>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
-                                        <li>
-                                            <figure>
-                                                <a data-fancybox-group="group" href="views/extra-images/gallery-modren-img2.jpg" class="fancybox"><img src="views/extra-images/gallery-modren-img2.jpg" alt=""><i class="icon-signs23"></i></a>
-                                                <span>11 Photos</span>
-                                                <figcaption>
-                                                    <h6><a href="#">The Champion Final will be played</a></h6>
-                                                    <time datetime="2008-02-14 20:00">Feb 17th, 2017</time>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
-                                        <li>
-                                            <figure>
-                                                <a data-fancybox-group="group" href="views/extra-images/gallery-modren-img3.jpg" class="fancybox"><img src="views/extra-images/gallery-modren-img3.jpg" alt=""><i class="icon-signs23"></i></a>
-                                                <span>7 Photos</span>
-                                                <figcaption>
-                                                    <h6><a href="#">The Champion Final will be played</a></h6>
-                                                    <time datetime="2008-02-14 20:00">May 17th, 2017</time>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
-                                        <li>
-                                            <figure>
-                                                <a data-fancybox-group="group" href="views/extra-images/gallery-modren-img4.jpg" class="fancybox"><img src="views/extra-images/gallery-modren-img4.jpg" alt=""><i class="icon-signs23"></i></a>
-                                                <span>4 Photos</span>
-                                                <figcaption>
-                                                    <h6><a href="#">The Champion Final will be played</a></h6>
-                                                    <time datetime="2008-02-14 20:00">Feb 17th, 2017</time>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
-                                        <li>
-                                            <figure>
-                                                <a data-fancybox-group="group" href="views/extra-images/gallery-modren-img5.jpg" class="fancybox"><img src="views/extra-images/gallery-modren-img5.jpg" alt=""><i class="icon-signs23"></i></a>
-                                                <span>13 Photos</span>
-                                                <figcaption>
-                                                    <h6><a href="#">The Champion Final will be played</a></h6>
-                                                    <time datetime="2008-02-14 20:00">May 17th, 2017</time>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
-                                        <li>
-                                            <figure>
-                                                <a data-fancybox-group="group" href="views/extra-images/gallery-modren-img6.jpg" class="fancybox"><img src="views/extra-images/gallery-modren-img6.jpg" alt=""><i class="icon-signs23"></i></a>
-                                                <span>6 Photos</span>
-                                                <figcaption>
-                                                    <h6><a href="#">The Champion Final will be played</a></h6>
-                                                    <time datetime="2008-02-14 20:00">Feb 17th, 2017</time>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
+                                        <c:forEach items="${product}" var="item">
+                                            <li>
+                                                <figure>
+                                                    <a data-fancybox-group="group" href="views/extra-images/gallery-modren-img1.jpg" class="fancybox"><img src="views/extra-images/gallery-modren-img1.jpg" alt=""><i class="icon-signs23"></i></a>
+                                                    <span>12 Photos</span>
+                                                    <figcaption>
+                                                        <h6><a href="#">The Champion Final will be played</a></h6>
+                                                        <time datetime="2008-02-14 20:00">May 17th, 2017</time>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                        </c:forEach>
                                     </ul>
                                 </div>
 
@@ -499,87 +289,25 @@
 
                                 <!--// Widget TeamRanking \\-->
                                 <div class="widget widget_team_ranking">
-                                    <div class="sportsmagazine-fancy-title"><h2>Team Rankings</h2></div>
+                                    <div class="sportsmagazine-fancy-title"><h2>Top Product Seller</h2></div>
                                     <div class="ranking-title-table">
                                         <ul class="ranking-title-row">
-                                            <li>Team Rank</li>
-                                            <li>M</li>
-                                            <li>W</li>
-                                            <li>PTS</li>
+                                            <li>Name</li>
+                                            <li>Price</li>
+                                            <li>Seller</li>
                                         </ul>
                                     </div>
-                                    <div class="ranking-content-table">
-                                        <ul class="ranking-content-row">
-                                            <li>1</li>
-                                            <li> <img src="views/extra-images/ranking-widget-flag-1.png" alt=""> <div class="ranking-logo"><span>L.A Pirates</span> <small>Bebop Institute</small> </div> </li>
-                                            <li>08</li>
-                                            <li>08</li>
-                                            <li>16</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ranking-content-table">
-                                        <ul class="ranking-content-row">
-                                            <li>2</li>
-                                            <li> <img src="views/extra-images/ranking-widget-flag-2.png" alt=""> <div class="ranking-logo"><span>Ocean Kings</span> <small>Icarus College</small> </div> </li>
-                                            <li>08</li>
-                                            <li>07</li>
-                                            <li>14</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ranking-content-table">
-                                        <ul class="ranking-content-row">
-                                            <li>3</li>
-                                            <li> <img src="views/extra-images/ranking-widget-flag-3.png" alt=""> <div class="ranking-logo"><span>Red Wings</span> <small>Marine College</small> </div> </li>
-                                            <li>07</li>
-                                            <li>07</li>
-                                            <li>14</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ranking-content-table">
-                                        <ul class="ranking-content-row">
-                                            <li>4</li>
-                                            <li> <img src="views/extra-images/ranking-widget-flag-4.png" alt=""> <div class="ranking-logo"><span>Lucky Clovers</span> <small>Elric Bros School</small> </div> </li>
-                                            <li>07</li>
-                                            <li>06</li>
-                                            <li>12</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ranking-content-table">
-                                        <ul class="ranking-content-row">
-                                            <li>5</li>
-                                            <li> <img src="views/extra-images/ranking-widget-flag-5.png" alt=""> <div class="ranking-logo"><span>Draconians</span> <small>Atlantic School</small> </div> </li>
-                                            <li>06</li>
-                                            <li>05</li>
-                                            <li>10</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ranking-content-table">
-                                        <ul class="ranking-content-row">
-                                            <li>6</li>
-                                            <li> <img src="views/extra-images/ranking-widget-flag-6.png" alt=""> <div class="ranking-logo"><span>Bloody Wave</span> <small>Marine College</small> </div> </li>
-                                            <li>06</li>
-                                            <li>04</li>
-                                            <li>08</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ranking-content-table">
-                                        <ul class="ranking-content-row">
-                                            <li>7</li>
-                                            <li> <img src="views/extra-images/ranking-widget-flag-7.png" alt=""> <div class="ranking-logo"><span>Ocean Kings</span> <small>St. Patrick’s Institute</small> </div> </li>
-                                            <li>06</li>
-                                            <li>04</li>
-                                            <li>08</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ranking-content-table">
-                                        <ul class="ranking-content-row">
-                                            <li>8</li>
-                                            <li> <img src="views/extra-images/ranking-widget-flag-2.png" alt=""> <div class="ranking-logo"><span>Sharks</span> <small>Icarus College</small> </div> </li>
-                                            <li>06</li>
-                                            <li>02</li>
-                                            <li>04</li>
-                                        </ul>
-                                    </div>
+                                    <c:forEach items="${product}" var="item">
+                                        <div class="ranking-content-table">
+                                            <ul class="ranking-content-row">
+                                                <li>${item.name}</li>
+                                                <li>${item.formatPrice}</li>
+                                                <li>08</li>
+                                            </ul>
+                                        </div>
+                                    </c:forEach>
+
+
                                 </div>
                                 <!--// Widget TeamRanking \\-->
 
@@ -728,59 +456,9 @@
                                 </div>
                                 <!--// Widget Trending News \\-->
 
-                                <!--// Widget Next Match \\-->
-                                <div class="widget widget_next_match">
-                                    <div class="sportsmagazine-fancy-title"><h2>Next Match</h2></div>
-                                    <div class="widget_next_match_title">
-                                        <h5>Championship Quarter Finals</h5>
-                                        <span>Saturday, May 17th, 2017</span>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <img src="views/extra-images/widget-next-match-logo-1.png" alt="">
-                                            <h6><a href="fixture-detail.html">Basketball</a></h6>
-                                            <small>Sports And Magazine</small>
-                                        </li>
-                                        <li>
-                                            <div class="widget_next_match_option">
-                                                <h6>09:00 pm</h6>
-                                                <small>Madison Stadium</small>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="views/extra-images/widget-next-match-logo-2.png" alt="">
-                                            <h6><a href="fixture-detail.html">Combine</a></h6>
-                                            <small>ST Paddy's Institute</small>
-                                        </li>
-                                    </ul>
-                                    <div class="widget_match_countdown">
-                                        <h6>Game Countdown</h6>
-                                        <div id="sportsmagazine-countdown"></div>
-                                    </div>
-                                    <a href="fixture.html" class="widget_match_btn">Buy Ticket Now</a>
-                                </div>
-                                <!--// Widget Next Match \\-->
 
-                                <!--// Widget Newsletter \\-->
-                                <div class="widget widget_newsletter">
-                                    <div class="sportsmagazine-fancy-title"><h2>Our Newsletter</h2></div>
-                                    <form>
-                                        <label>Subscribe Now</label>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac malesuada ante.</p>
-                                        <input type="text" value="Your Name" onblur="if (this.value == '') {
-                                                this.value = 'Your Name';
-                                            }" onfocus="if (this.value == 'Your Name') {
-                                                        this.value = '';
-                                                    }">
-                                        <input type="text" value="Enter Your email" onblur="if (this.value == '') {
-                                                this.value = 'Enter Your email';
-                                            }" onfocus="if (this.value == 'Enter Your email') {
-                                                        this.value = '';
-                                                    }">
-                                        <label class="widget_newsletter_btn"><input type="submit" value="Subscribe"></label>
-                                    </form>
-                                </div>
-                                <!--// Widget Newsletter \\-->
+
+
 
                                 <!--// Widget Add \\-->
                                 <div class="widget widget_add">
@@ -815,8 +493,10 @@
                     <div class="row">
                         <form class="sportsmagazine-search-box">
                             <input type="text" value="Search Your Keyword" onblur="if (this.value == '') {
-                                    this.value = 'Search Your Keyword'; }" onfocus="if (this.value == 'Search Your Keyword') {
-                                                this.value = ''; }">
+                                        this.value = 'Search Your Keyword';
+                                    }" onfocus="if (this.value == 'Search Your Keyword') {
+                                                this.value = '';
+                                            }">
                             <input type="submit" value="">
                             <i class="fa fa-search"></i>
                         </form>

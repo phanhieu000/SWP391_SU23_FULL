@@ -5,12 +5,15 @@
 
 package Controller.Shop;
 
+import DAL.ProductDAO;
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -53,6 +56,39 @@ public class Shop_Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
+        ProductDAO pd = new ProductDAO();
+        List<Product> list = pd.getAll();
+        
+        int page, numberPerPage = 6;
+        String xpage = request.getParameter("page");
+        int size;
+        if(list.isEmpty()){
+            size = 0;
+        }else {
+            size = list.size();
+        }
+         
+        int numberOfPage = ((size % numberPerPage == 0) ? (size / numberPerPage) : (size / numberPerPage + 1));
+        if (xpage == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(xpage);
+        }
+        int start, end;
+        start = (page - 1) * numberPerPage;
+        end = Math.min(page * numberPerPage, size);
+        
+        List<Product> listByPage = pd.getListByPage(list, start, end);
+        request.setAttribute("listByPage", listByPage);
+        request.setAttribute("page", page);
+        request.setAttribute("numberPage", numberOfPage);
+        request.setAttribute("start", start + 1);
+        request.setAttribute("end", end);
+        request.setAttribute("totalItem", list.size());
+        
+        
+        request.setAttribute("data", listByPage);
         request.getRequestDispatcher("views/shop.jsp").forward(request, response);
     } 
 

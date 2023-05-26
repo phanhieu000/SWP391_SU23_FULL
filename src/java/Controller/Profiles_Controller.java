@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import DAO.AccountDAO;
-import DAO.Common;
+import DAL.AccountDAO;
+import DAL.Common;
 import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;

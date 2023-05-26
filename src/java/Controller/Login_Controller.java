@@ -1,6 +1,6 @@
 package Controller;
 
-import DAO.AccountDAO;
+import DAL.AccountDAO;
 import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;

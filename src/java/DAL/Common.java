@@ -1,4 +1,4 @@
-package DAO;
+package DAL;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -23,6 +23,10 @@ public class Common {
         LocalDate curDate = java.time.LocalDate.now();
         return Date.valueOf(curDate.toString());
     }
+    
+    public static void main(String[] args) {
+        System.out.println(getCurrentDate());
+    }
 
     public static String convertPassToMD5(String password) {
         MessageDigest convert = null;
@@ -40,8 +44,6 @@ public class Common {
         return DatatypeConverter.printHexBinary(passwordByte);
     }
     
-    public static void main(String[] args) {
-        System.out.println(convertPassToMD5("ss"));
-    }
+    
 
 }

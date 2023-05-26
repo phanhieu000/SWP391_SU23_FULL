@@ -5,6 +5,10 @@
 
 package Controller;
 
+import DAL.AccountDAO;
+import DAL.Common;
+import Model.Account;
+import Model.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -66,7 +70,18 @@ public class Register_Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        
+        AccountDAO ad = new AccountDAO();
+        
+        if(!ad.checkExist(userName)){
+            ad.register(new Account(-1, userName, password, email, "", "", "", "", Common.getCurrentDate(), Common.getCurrentDate(), false, false, new Role()));
+            
+        }
+        
+        response.sendRedirect("login");
     }
 
     /** 

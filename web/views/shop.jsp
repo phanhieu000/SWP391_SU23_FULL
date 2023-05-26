@@ -36,6 +36,8 @@
     </head>
     <body>
 
+        <jsp:useBean class="DAO.CategoryDAO" id="cd"/>
+
         <!--// Main Wrapper \\-->
         <div class="sportsmagazine-main-wrapper">
 
@@ -60,11 +62,9 @@
                                 <div class="sportsmagazine-widget-heading"><h2>Cetagories</h2></div>
                                 <div class="widget widget_cetagories">
                                     <ul>
-                                        <li><a href="404.html"><input type="checkbox" name="name">Championship <span>( 13 )</span></a></li>
-                                        <li><a href="404.html"><input type="checkbox" name="name">Super Ball <span>( 12 )</span></a></li>
-                                        <li><a href="404.html"><input type="checkbox" name="name">Football <span>( 04 )</span></a></li>
-                                        <li><a href="404.html"><input type="checkbox" name="name">Boxing <span>( 08 )</span></a></li>
-                                        <li><a href="404.html"><input type="checkbox" name="name">BasketBall <span>( 13 )</span></a></li>
+                                        <c:forEach items="${cd.all}" var="item">
+                                            <li><a href="404.html"><input type="checkbox" name="name" style="margin-right: 1rem">${item.title} </a></li>
+                                                </c:forEach>
                                     </ul>
                                 </div>
                                 <!--// Widget Cetagories \\-->
@@ -140,15 +140,15 @@
                             <div class="col-md-9">
                                 <div class="sportsmagazine-shop sportsmagazine-shop-grid">
                                     <ul class="row">
-                                        <c:forEach begin="1" end="12" var="i">
+                                        <c:forEach items="${data}" var="item">
                                             <li class="col-md-4">
                                                 <figure>
-                                                    <a href="shopdetail?id=${i}"><img src="views/extra-images/shop-grid-img1.jpg" alt=""><i class="fa fa-shopping-cart"></i></a>
+                                                    <a href="shopdetail?id=${item.id}"><img src="views/extra-images/shop-grid-img1.jpg" alt=""><i class="fa fa-shopping-cart"></i></a>
                                                     <div class="star-rating"><span class="star-rating-box" style="width:69%"></span></div>
                                                 </figure>
                                                 <section>
-                                                    <h5><a href="shopdetail?id=${i}">Atlantic Sneaker ${i}</a></h5>
-                                                    <span class="price-cart"><del>$ 30.00</del> $19.00</span>
+                                                    <h5><a href="shopdetail?id=${item.id}">${item.name}</a></h5>
+                                                    <span class="price-cart"><del>${item.formatPriceFake} VND </del> ${item.formatPrice} VND</span>
                                                     <span></span>
                                                 </section>
                                             </li>
@@ -159,12 +159,20 @@
                                 <!--// Pagination \\-->
                                 <div class="sportsmagazine-pagination">
                                     <ul class="page-numbers">
-                                        <li><a class="previous page-numbers" href="404.html"><span aria-label="Next"><i class="fa fa-angle-left"></i></span></a></li>
-                                        <li><span class="page-numbers current">1</span></li>
-                                        <li><a class="page-numbers" href="404.html">2</a></li>
-                                        <li><a class="page-numbers" href="404.html">3</a></li>
-                                        <li><a class="page-numbers" href="404.html">4</a></li>
-                                        <li><a class="next page-numbers" href="404.html"><span aria-label="Next"><i class="fa fa-angle-right"></i></span></a></li>
+                                        <li>
+                                            <a class="previous page-numbers" href="shop?page=${page > 1 ? page-1 : page}">
+                                                <span aria-label="Next"><i class="fa fa-angle-left"></i></span></a>
+                                        </li>
+                                        <c:forEach begin="1" end="${numberPage}" var="i">
+                                            <li><a class="page-numbers ${(page == i) ? 'current' : ''}" href="shop?page=${i}">${i}</a></li>
+
+                                        </c:forEach>
+
+                                        <li>
+                                            <a class="next page-numbers" href="shop?page=${page < numberPage ? page+1 : page}">
+                                                <span aria-label="Next"><i class="fa fa-angle-right"></i></span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <!--// Pagination \\-->
