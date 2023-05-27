@@ -1,10 +1,9 @@
 <%-- 
-    Document   : login
-    Created on : 22-05-2023, 20:37:35
+    Document   : myorder
+    Created on : 26-05-2023, 14:28:59
     Author     : phanh
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>SportsMagazine login register</title>
+        <title>My Orders</title>
 
         <!-- Css Files -->
         <link href="views/css/bootstrap.css" rel="stylesheet">
@@ -27,78 +26,53 @@
         <link href="views/css/responsive.css" rel="stylesheet">
 
 
-       
-
-        <style>
-            .d-flex {
-                display: flex!important;
-            }
-
-            .justify-content-center {
-                justify-content: center
-            }
-
-            .sportsmagazine-login-form form ul li input[type="password"],
-            .sportsmagazine-login-form form ul li input[type="text"] {
-                margin: 0px;
-                color: #999999;
-                font-size: 12px;
-                height: 40px;
-                background-color: #eeeeee;
-                padding-left: 21px;
-                font-style: italic;
-            }
-
-            .sportsmagazine-login-form form ul li input[type="password"],
-            .sportsmagazine-login-form form ul li input[type="text"] {
-                float: left;
-                width: 100%;
-            }
-        </style>
     </head>
     <body>
 
         <!--// Main Wrapper \\-->
         <div class="sportsmagazine-main-wrapper">
+
             <!--// Header \\-->
             <jsp:include page="common/header/header.jsp" />
             <!--// Header \\-->
+
+           
 
             <!--// Main Content \\-->
             <div class="sportsmagazine-main-content">
 
                 <!--// Main Section \\-->
-                <div class="sportsmagazine-main-section sportsmagazine-login-form-full">
+                <div class="sportsmagazine-main-section sportsmagazine-wishlist-full">
                     <div class="container">
-                        <div class="row d-flex justify-content-center ">
+                        <div class="row">
 
-                            <div class="col-md-6 ">
-                                <div class="sportsmagazine-login-form">
-                                    <h4>Login To Your Account</h4>
-                                    <form action="" method="post">
+                            <div class="col-md-12">
+                                <div class="sportsmagazine-wishlist">
+                                    <h4>My Order (5)</h4>
+                                    <div class="sportsmagazine-wishlist-graph">
                                         <ul>
-                                            <li>
-                                                <input type="text" placeholder="Enter Your UserName*" name="userName" required></li>
-                                            <li>
-                                                <input type="password" placeholder="Enter Your Password*" name="password" required>
-                                                <a href="forgot-password">Forget Password?</a></li>
-                                            <li class="d-flex justify-content-center">
-                                                <label class="submit-border">
-                                                    <input type="submit" value="Sign In">
-                                                    <span></span>
-                                                </label>
-                                            </li>
-                                            <c:if test="${requestScope.error != null}">
-                                                <li>
-                                                    <span style="font-size: 20px; color: red">${requestScope.error}</span>
-                                                </li>
-                                            </c:if>
+                                            <li>Product Info</li>
+                                            <li>Description</li>
+                                            <li>Price</li>
+                                            <li>Availability</li>
                                         </ul>
-                                    </form>
-                                    
-                                    <span>Not A Member Yet ?<a href="register"> Sign - Up Now !</a></span>
+                                        <ul class="wishlist-graph">
+                                            <li>
+                                                <figure><img src="views/extra-images/shopping-cart-img1.jpg" alt=""></figure>
+                                                <section>
+                                                    <h6>Sundown Sneakers</h6>
+                                                    <div class="star-rating"><span class="star-rating-box" style="width:59%"></span></div>
+                                                </section>
+                                            </li>
+                                            <li><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac malesuada ante. Curabitur lacinia diam.</p></li>
+                                            <li>$28.00</li>
+                                            <li>In Stock</li>
+                                        </ul>
+                                        
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -107,8 +81,10 @@
             </div>
             <!--// Main Content \\-->
 
-
+            <!--// Footer \\-->
             <jsp:include page="common/footer/footer.jsp" />
+            <!--// Footer \\-->
+
             <div class="clearfix"></div>
         </div>
         <!--// Main Wrapper \\-->

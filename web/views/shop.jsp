@@ -27,16 +27,11 @@
         <link href="views/css/responsive.css" rel="stylesheet">
 
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+
     </head>
     <body>
 
-        <jsp:useBean class="DAO.CategoryDAO" id="cd"/>
+        <jsp:useBean class="DAL.CategoryDAO" id="cd"/>
 
         <!--// Main Wrapper \\-->
         <div class="sportsmagazine-main-wrapper">
@@ -73,66 +68,24 @@
                                 <div class="sportsmagazine-widget-heading"><h2>Popular Posts</h2></div>
                                 <div class="widget widget_popular_post">
                                     <ul>
-                                        <li>
-                                            <div class="sportsmagazine-popular-post">
-                                                <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post1.jpg" alt=""></a></figure>
-                                                <div class="sportsmagazine-popular-post-text">
-                                                    <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona</a></h5>
-                                                    <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
+                                        <c:forEach begin="1" end="3" var="i">
+                                            <li>
+                                                <div class="sportsmagazine-popular-post">
+                                                    <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post1.jpg" alt=""></a></figure>
+                                                    <div class="sportsmagazine-popular-post-text">
+                                                        <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona ${i}</a></h5>
+                                                        <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
+                                                    </div>
+                                                    <span></span>
                                                 </div>
-                                                <span></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="sportsmagazine-popular-post">
-                                                <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post2.jpg" alt=""></a></figure>
-                                                <div class="sportsmagazine-popular-post-text">
-                                                    <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona</a></h5>
-                                                    <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
-                                                </div>
-                                                <span></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="sportsmagazine-popular-post">
-                                                <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post3.jpg" alt=""></a></figure>
-                                                <div class="sportsmagazine-popular-post-text">
-                                                    <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona</a></h5>
-                                                    <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
-                                                </div>
-                                                <span></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="sportsmagazine-popular-post">
-                                                <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post4.jpg" alt=""></a></figure>
-                                                <div class="sportsmagazine-popular-post-text">
-                                                    <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona</a></h5>
-                                                    <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
-                                                </div>
-                                                <span></span>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        </c:forEach>
+
+                                        
                                     </ul>
                                 </div>
                                 <!--// Widget Popular Post \\-->
 
-                                <!--// Widget Flicker Images \\-->
-                                <div class="sportsmagazine-widget-heading"><h2>Flicker Images</h2></div>
-                                <div class="widget widget_gallery">
-                                    <ul>
-                                        <li><a data-fancybox-group="group" href="views/extra-images/flicker-image-1.jpg" class="fancybox"><img src="views/extra-images/flicker-image-1.jpg" alt=""><i class="fa fa-angle-double-right"></i></a></li>
-                                        <li><a data-fancybox-group="group" href="views/extra-images/flicker-image-2.jpg" class="fancybox"><img src="views/extra-images/flicker-image-2.jpg" alt=""><i class="fa fa-angle-double-right"></i></a></li>
-                                        <li><a data-fancybox-group="group" href="views/extra-images/flicker-image-3.jpg" class="fancybox"><img src="views/extra-images/flicker-image-3.jpg" alt=""><i class="fa fa-angle-double-right"></i></a></li>
-                                        <li><a data-fancybox-group="group" href="views/extra-images/flicker-image-4.jpg" class="fancybox"><img src="views/extra-images/flicker-image-4.jpg" alt=""><i class="fa fa-angle-double-right"></i></a></li>
-                                        <li><a data-fancybox-group="group" href="views/extra-images/flicker-image-5.jpg" class="fancybox"><img src="views/extra-images/flicker-image-5.jpg" alt=""><i class="fa fa-angle-double-right"></i></a></li>
-                                        <li><a data-fancybox-group="group" href="views/extra-images/flicker-image-6.jpg" class="fancybox"><img src="views/extra-images/flicker-image-6.jpg" alt=""><i class="fa fa-angle-double-right"></i></a></li>
-                                        <li><a data-fancybox-group="group" href="views/extra-images/flicker-image-7.jpg" class="fancybox"><img src="views/extra-images/flicker-image-7.jpg" alt=""><i class="fa fa-angle-double-right"></i></a></li>
-                                        <li><a data-fancybox-group="group" href="views/extra-images/flicker-image-8.jpg" class="fancybox"><img src="views/extra-images/flicker-image-8.jpg" alt=""><i class="fa fa-angle-double-right"></i></a></li>
-                                        <li><a data-fancybox-group="group" href="views/extra-images/flicker-image-9.jpg" class="fancybox"><img src="views/extra-images/flicker-image-9.jpg" alt=""><i class="fa fa-angle-double-right"></i></a></li>
-                                    </ul>
-                                </div>
-                                <!--// Widget Flicker Images \\-->
 
                             </aside>
                             <!--// SideBar \\-->

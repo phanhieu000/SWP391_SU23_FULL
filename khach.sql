@@ -1,4 +1,4 @@
-use [master]
+﻿use [master]
 go
 /*******************************************************************************
    Drop database if it exists
@@ -202,6 +202,9 @@ CREATE TABLE Account (
 	userName varchar(150) not null unique,
 	[password] varchar(150) not null,
 	email varchar(200) not null unique,
+	
+	firstName nvarchar(100) null,
+	lastName nvarchar(100) null,
 	[address] nvarchar(255),
 	phone varchar(15),
 	birthday date,
@@ -232,6 +235,8 @@ CREATE TABLE Post (
 	createDate date not null,
 	updateDate date not null,
 	isPublished bit,
+	[like] int not null,
+	[view] int not null,
 
 	ownerID int not null,
 
@@ -244,6 +249,9 @@ CREATE TABLE [Order] (
 	price money not null,
 	[status] int not null,
 	createDate date not null,
+	firstName nvarchar(100) not null,
+	lastName nvarchar(100) not null,
+	email varchar(255) not null,
 	[address] nvarchar(max) not null,
 	phone varchar(15) not null,
 	note nvarchar(max) null,
@@ -277,6 +285,21 @@ CREATE TABLE Comment (
 
 	pid int not null,
 	aid int not null,
+
+	PRIMARY KEY (id)
+)
+GO
+
+CREATE TABLE OTP(
+	id int identity(1, 1) not null,
+	code varchar(255) not null,
+	[type] varchar(255) not null,
+	email varchar(150) not null,
+	createDate date not null,
+	isActive bit not null,
+
+
+	account varchar(150) not null,
 
 	PRIMARY KEY (id)
 )
@@ -336,6 +359,10 @@ ADD CONSTRAINT fk_comment_product FOREIGN KEY (pid) REFERENCES Product (id),
 	CONSTRAINT fk_comment_account FOREIGN KEY (aid) REFERENCES Account (id)
 GO
 
+ALTER TABLE OTP 
+ADD CONSTRAINT fk_OTP_account FOREIGN KEY (account) REFERENCES Account(userName)
+GO
+
 
 INSERT INTO [dbo].[Role] ([title] ,[createDate])
 VALUES
@@ -344,7 +371,106 @@ VALUES
 		('Bloger' , '2023/05/22')
 GO
 
-INSERT INTO [dbo].[Account] ([userName] ,[password] ,[email] ,[address] ,[phone] ,[birthday] ,[createDate] ,[isBlock] ,[isVerify] ,[rid])
+INSERT INTO [dbo].[Account] ([userName] ,[password] ,[email] ,[firstName] ,[lastName] ,[address] ,[phone] ,[birthday] ,[createDate] ,[isBlock] ,[isVerify] ,[rid])
 VALUES
-		('admin' , 'admin123' , 'admin@gmail.com' ,'Ha Noi' ,'0838456798' ,'05/01/2002' ,GETDATE() ,0 ,1 ,0)
+		('admin' , '968855132DC5D0EB2ED7C0FC4EF3421E' , 'admin@gmail.com' ,N'Phan',N'Hiếu','Ha Noi' ,'0838456798' ,'05/01/2002' ,GETDATE() ,0 ,1 ,1)
+GO
+
+
+INSERT INTO [dbo].[Category] ([title] ,[createDate] ,[updateDate] ,[isActive])
+VALUES	
+		(N'Giày Cỏ Tự Nhiên' , '2023/05/22' , '2023/05/22' , 1),
+		(N'Giày Cỏ Nhân Tạo' , '2023/05/22' , '2023/05/22' , 1),
+		(N'Giày Fustal' , '2023/05/22' , '2023/05/22' , 1),
+		(N'Giày Đá Bóng Giá Rẻ' , '2023/05/22' , '2023/05/22' , 1),
+		(N'Giày Đá Bóng Trẻ Em' , '2023/05/22' , '2023/05/22' , 1)
+GO
+
+INSERT INTO [dbo].[Brand] ([name] ,[location] ,[createDate] ,[updateDate] ,[isActive])
+VALUES	
+		(N'Việt Nam', N'Việt Nam', '2023/05/22', '2023/05/22', 1),
+		(N'Mỹ', N'Mỹ', '2023/05/22', '2023/05/22', 1),
+		(N'Nhật Bản', N'Nhật Bản', '2023/05/22', '2023/05/22', 1),
+		(N'Trung Quốc', N'Trung Quốc', '2023/05/22', '2023/05/22', 1)
+GO
+
+INSERT INTO [dbo].[Product] ([sku], [name], [price], [quantity], [createDate], [updateDate], [isActive], [cid], [bid])
+VALUES
+		('P001', N'Giày Đẹp 001', 1000000, 100, '2023/05/22', '2023/05/22', 1, 1, 1),
+		('P002', N'Giày Đẹp 002', 2000000, 100, '2023/05/22', '2023/05/22', 1, 2, 2),
+		('P003', N'Giày Đẹp 003', 3000000, 100, '2023/05/22', '2023/05/22', 1, 3, 3),
+		('P004', N'Giày Đẹp 004', 4000000, 100, '2023/05/22', '2023/05/22', 1, 4, 4),
+		('P005', N'Giày Đẹp 005', 5000000, 100, '2023/05/22', '2023/05/22', 1, 5, 4),
+		('P006', N'Giày Đẹp 006', 6000000, 100, '2023/05/22', '2023/05/22', 1, 3, 2),
+		('P007', N'Giày Đẹp 007', 7000000, 100, '2023/05/22', '2023/05/22', 1, 1, 2),
+		('P008', N'Giày Đẹp 008', 8000000, 100, '2023/05/22', '2023/05/22', 1, 3, 4)
+GO
+
+INSERT INTO [dbo].[Size] ([title], [createDate], [updateDate], [isActive])
+VALUES
+		('30', '2023/05/22', '2023/05/22', 1),
+		('31', '2023/05/22', '2023/05/22', 1),
+		('32', '2023/05/22', '2023/05/22', 1),
+		('33', '2023/05/22', '2023/05/22', 1),
+		('34', '2023/05/22', '2023/05/22', 1),
+		('35', '2023/05/22', '2023/05/22', 1),
+		('36', '2023/05/22', '2023/05/22', 1),
+		('37', '2023/05/22', '2023/05/22', 1),
+		('38', '2023/05/22', '2023/05/22', 1),
+		('39', '2023/05/22', '2023/05/22', 1),
+		('40', '2023/05/22', '2023/05/22', 1),
+		('41', '2023/05/22', '2023/05/22', 1),
+		('42', '2023/05/22', '2023/05/22', 1),
+		('43', '2023/05/22', '2023/05/22', 1),
+		('44', '2023/05/22', '2023/05/22', 1),
+		('45', '2023/05/22', '2023/05/22', 1),
+		('46', '2023/05/22', '2023/05/22', 1),
+		('47', '2023/05/22', '2023/05/22', 1),
+		('48', '2023/05/22', '2023/05/22', 1),
+		('49', '2023/05/22', '2023/05/22', 1),
+		('50', '2023/05/22', '2023/05/22', 1),
+		('S', '2023/05/22', '2023/05/22', 1),
+		('X', '2023/05/22', '2023/05/22', 1),
+		('L', '2023/05/22', '2023/05/22', 1),
+		('M', '2023/05/22', '2023/05/22', 1),
+		('XXL', '2023/05/22', '2023/05/22', 1),
+		('XL', '2023/05/22', '2023/05/22', 1),
+		('XM', '2023/05/22', '2023/05/22', 1),
+		('XS', '2023/05/22', '2023/05/22', 1)
+GO
+
+INSERT INTO [dbo].[Color] ([title], [createDate], [updateDate], [isActive])
+VALUES
+		('Red', '2023/05/22', '2023/05/22', 1),
+		('Black', '2023/05/22', '2023/05/22', 1),
+		('White', '2023/05/22', '2023/05/22', 1),
+		('Green', '2023/05/22', '2023/05/22', 1),
+		('Violet', '2023/05/22', '2023/05/22', 1),
+		('Gray', '2023/05/22', '2023/05/22', 1)
+GO
+
+INSERT INTO [dbo].[Product_Color] ([pid] ,[cid])
+VALUES	(1 , 1),
+		(1 , 2),
+		(1 , 3),
+		(1 , 4),
+		(2 , 1),
+		(3 , 2),
+		(4 , 1),
+		(5 , 3),
+		(6 , 1)
+GO
+
+INSERT INTO [dbo].[Product_Size] ([pid] ,[sid])
+VALUES	(1, 1),
+		(1, 2),
+		(1, 3),
+		(1, 4),
+		(1, 5),
+		(2, 5),
+		(3, 4),
+		(4, 3),
+		(5, 2),
+		(6, 1),
+		(7, 10)
 GO

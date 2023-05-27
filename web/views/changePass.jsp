@@ -59,7 +59,7 @@
 
     </head>
     <body>
-        <jsp:useBean class="DAO.CommonForJSP" id="C"/>
+        <jsp:useBean class="DAL.CommonForJSP" id="C"/>
         <!--// Main Wrapper \\-->
         <div class="sportsmagazine-main-wrapper">
 

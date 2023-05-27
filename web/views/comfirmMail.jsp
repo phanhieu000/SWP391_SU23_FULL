@@ -1,10 +1,9 @@
 <%-- 
-    Document   : login
-    Created on : 22-05-2023, 20:37:35
+    Document   : comfirmMail
+    Created on : 26-05-2023, 12:44:31
     Author     : phanh
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>SportsMagazine login register</title>
+        <title>Comfirm Mail</title>
 
         <!-- Css Files -->
         <link href="views/css/bootstrap.css" rel="stylesheet">
@@ -28,87 +27,84 @@
 
 
        
-
-        <style>
-            .d-flex {
-                display: flex!important;
-            }
-
-            .justify-content-center {
-                justify-content: center
-            }
-
-            .sportsmagazine-login-form form ul li input[type="password"],
-            .sportsmagazine-login-form form ul li input[type="text"] {
-                margin: 0px;
-                color: #999999;
-                font-size: 12px;
-                height: 40px;
-                background-color: #eeeeee;
-                padding-left: 21px;
-                font-style: italic;
-            }
-
-            .sportsmagazine-login-form form ul li input[type="password"],
-            .sportsmagazine-login-form form ul li input[type="text"] {
-                float: left;
-                width: 100%;
-            }
-        </style>
     </head>
     <body>
 
         <!--// Main Wrapper \\-->
         <div class="sportsmagazine-main-wrapper">
+
             <!--// Header \\-->
             <jsp:include page="common/header/header.jsp" />
             <!--// Header \\-->
+
+            
 
             <!--// Main Content \\-->
             <div class="sportsmagazine-main-content">
 
                 <!--// Main Section \\-->
-                <div class="sportsmagazine-main-section sportsmagazine-login-form-full">
+                <div class="sportsmagazine-main-section sportsmagazine-contactus-full">
                     <div class="container">
-                        <div class="row d-flex justify-content-center ">
+                        <div class="row">
 
-                            <div class="col-md-6 ">
-                                <div class="sportsmagazine-login-form">
-                                    <h4>Login To Your Account</h4>
-                                    <form action="" method="post">
+                            <div class="col-md-12">
+                                <div class="sportsmagazine-fancy-title-two"><h2>Confirm Mail <span></span></h2></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="sportsmagazine-contact-form">
+                                    <form>
                                         <ul>
+                                            
                                             <li>
-                                                <input type="text" placeholder="Enter Your UserName*" name="userName" required></li>
-                                            <li>
-                                                <input type="password" placeholder="Enter Your Password*" name="password" required>
-                                                <a href="forgot-password">Forget Password?</a></li>
-                                            <li class="d-flex justify-content-center">
-                                                <label class="submit-border">
-                                                    <input type="submit" value="Sign In">
-                                                    <span></span>
-                                                </label>
+                                                <label>Email:</label>
+                                                <p>
+                                                    <input placeholder="Enter Your Email"  type="text">
+                                                    <span><i class="fa fa-envelope"></i></span>
+                                                </p>
                                             </li>
-                                            <c:if test="${requestScope.error != null}">
-                                                <li>
-                                                    <span style="font-size: 20px; color: red">${requestScope.error}</span>
-                                                </li>
-                                            </c:if>
+                                            <li>
+                                                <label>Code: </label>
+                                                <p>
+                                                    <input placeholder="Enter Code on Your Email"  type="text">
+                                                    <span><i class="fa fa-keyboard-o"></i></span>
+                                                </p>
+                                            </li>
+                                            
+                                            <li>
+                                                <p><label><input value="Confirm" type="submit"></label></p>
+                                            </li>
                                         </ul>
                                     </form>
-                                    
-                                    <span>Not A Member Yet ?<a href="register"> Sign - Up Now !</a></span>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <ul class="sportsmagazine-contact-us-text">
+                                    <li>
+                                        <h4>Send Us Message !!!</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectet adipiscing elit. Ut ac malesuada antes urabitur lacinia</p>
+                                    </li>
+                                    <li>
+                                        <h4>Open Practices</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectet adipiscing elit. Ut ac malesuada antes urabitur lacinia</p>
+                                        <time datetime="2008-02-14 20:00">Timings: <span>9:00am to 12:00pm</span></time>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                 </div>
                 <!--// Main Section \\-->
 
+               
+
             </div>
             <!--// Main Content \\-->
 
-
+            <!--// Footer \\-->
             <jsp:include page="common/footer/footer.jsp" />
+            <!--// Footer \\-->
+
             <div class="clearfix"></div>
         </div>
         <!--// Main Wrapper \\-->

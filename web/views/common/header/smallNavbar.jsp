@@ -45,15 +45,16 @@
                                 </a>
                                 <a href="checkout" class="sportsmagazine-cartbox-btn sportsmagazine-bgcolorhover">
                                     <i class="flaticon-tool"></i> Go to Checkout
-                                    
+
                                 </a>
-                                
+
                             </div>
                         </div>
                     </li>
-                     <c:if test="${account != null}">
+                    <c:if test="${account != null}">
                         <li><i class="fa fa-user"></i> <a href="profiles" >Hello, ${account.userName}</a></li>
                         <li><i class="fa fa-unlock-alt"></i> <a href="changePass">Change Password</a></li>
+                        <li><i class="fa fa-shopping-bag"></i> <a href="myorder">My Order</a></li>
                         <li><i class="fa fa-sign-out"></i> <a href="logout">Logout</a></li>
                         </c:if>
 

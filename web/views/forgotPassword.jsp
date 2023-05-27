@@ -81,40 +81,27 @@
 
                             <div class="col-md-6">
                                 <div class="sportsmagazine-login-form sportsmagazine-register-form">
-                                    <h4>Register Your Account Now</h4>
+                                    <h4>Forgot Password !</h4>
                                     <form action="" method="POST">
                                         <ul>
                                             <li>
-                                                <label class="form-label">Your UserName</label>
-                                                <input type="text" placeholder="Enter An UserName" name="userName" >
+                                                <label class="form-label">Your Email:</label>
+                                                <input type="email" placeholder="Enter Your Email" name="email" required>
                                             </li>
-                                            <li>
-                                                <label class="form-label">Your Email</label>
-                                                <input type="email" placeholder="Enter Your Email To Verify !" name="email">
-                                            </li>
-                                            <li>
-                                                <label class="form-label">Password</label>
-                                                <input type="password" placeholder="Enter Password" name="password">
-                                            </li>
-                                            <li>
-                                                <label class="form-label">Confirm Password</label>
-                                                <input type="password" placeholder="Enter Comfirm Password">
-                                            </li>
-                                            <c:if test="${message != null }">
-                                                <span >${message}<a href="confirmMail"> Verify Email Here !</a></span>
-                                            </c:if>
+                                            
+                                           
                                             <c:if test="${error != null }">
                                                 <h5 style="color: red">${error}</h5>
                                             </c:if>
                                             <li class="d-flex justify-content-center">
                                                 <label class="submit-border">
-                                                    <input type="submit" value="Register">
+                                                    <input type="submit" value="Send">
                                                     <span></span>
                                                 </label>
                                             </li>
                                         </ul>
                                     </form>
-                                    <span style="float: right">Have A Account ?<a href="login"> Sign - In Now !</a></span>
+                                    <span style="float: right">Not A Member Yet ?<a href="register"> Sign - Up Now !</a></span>
                                 </div>
                             </div>
 

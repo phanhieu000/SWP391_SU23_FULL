@@ -128,11 +128,34 @@ public class AccountDAO extends DBContext {
         }
         return false;
     }
+    
+    public boolean checkEmailExit(String email) {
+        try {
+            
+            String sql = "SELECT a.[email]\n"
+                    + "    FROM [dbo].[Account] a\n"
+                    + "     WHERE a.email = ?";
+            
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, email);
+            
+            ResultSet rs = st.executeQuery();
+            
+            if(rs.next()) {
+                return true;
+            }
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
 
     public boolean register(Account a) {
         try {
 
-            String sql = "INSERT INTO [dbo].[Account]	([userName], [password] , [email] , [firstName] , [lastName] , [address] , [phone] , [birthday] , [createDate] , [isBlock] , [isVerify] , [rid])\n"
+            String sql = "INSERT INTO [dbo].[Account] ([userName], [password] , [email] , [firstName] , [lastName] , [address] , [phone] , [birthday] , [createDate] , [isBlock] , [isVerify] , [rid])\n"
                     + "VALUES\n"
                     + "		(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
