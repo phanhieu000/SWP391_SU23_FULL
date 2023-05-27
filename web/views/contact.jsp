@@ -1,6 +1,6 @@
 <%-- 
-    Document   : myorder
-    Created on : 26-05-2023, 14:28:59
+    Document   : contact
+    Created on : 27-05-2023, 18:49:33
     Author     : phanh
 --%>
 
@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>My Orders</title>
+        <title>Contact</title>
 
         <!-- Css Files -->
         <link href="views/css/bootstrap.css" rel="stylesheet">
@@ -27,6 +27,11 @@
         <link href="views/css/responsive.css" rel="stylesheet">
 
 
+        <style>
+            span {
+                color: #999999;
+            }
+        </style>
     </head>
     <body>
 
@@ -37,53 +42,43 @@
             <jsp:include page="common/header/header.jsp" />
             <!--// Header \\-->
 
-            <jsp:useBean class="DAL.CommonForJSP" id="common" />
-
-
             <!--// Main Content \\-->
             <div class="sportsmagazine-main-content">
 
                 <!--// Main Section \\-->
-                <div class="sportsmagazine-main-section sportsmagazine-wishlist-full">
+                <div class="sportsmagazine-main-section sportsmagazine-player-listfull">
                     <div class="container">
                         <div class="row">
 
                             <div class="col-md-12">
-                                <div class="sportsmagazine-wishlist">
+                                <div class="sportsmagazine-player sportsmagazine-player-list">
+                                    <ul class="row">
+                                        <c:forEach items="${data}" var="item">
+                                            <li class="col-md-6">
+                                                <figure><a href="#!"><img style="max-height: 286px; min-height: 286px" src="${item.images}" alt=""><i class="fa fa-link"></i></a></figure>
+                                                <div class="sportsmagazine-player-list-text">
 
-                                    <c:if test="${data.size() == 0}">
-                                        <h2 style="text-align: center">Bạn Chưa Có Đơn Nào Hàng !</h2>
-                                    </c:if>
+                                                    <h5><a href="#!">${item.storeName}</a></h5>
+                                                    <span>Địa Chỉ: ${item.storeAddress}</span><br/>
+                                                    <span>Điện Thoại: ${item.storePhone}</span><br/>
+                                                    <span>Time: ${item.startWorking} - ${item.endWorking}</span>
 
-                                    <c:if test="${data.size() != 0}">
-                                        <h4>My Order (${data.size()})</h4>
-                                        <div class="sportsmagazine-wishlist-graph">
-                                            <ul>
-                                                <li>Order ID</li>
-                                                <li>Time</li>
-                                                <li>Price</li>
-                                                <li>Status</li>
-                                            </ul>
+                                                    <ul class="sportsmagazine-player-social">
+                                                        <li><a href="https://www.facebook.com/phanhieu000" target="_blank" class="icon-facebook2"></a></li>
+                                                        <li><a href="https://plus.google.com/" class="icon-google-plus2"></a></li>
+                                                        <li><a href="#!" class=" icon-linkedin"></a></li>
+                                                        <li><a href="#!" class="icon-social62"></a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </c:forEach>
 
-                                            <c:forEach items="${data}" var="item">
-                                                <ul class="wishlist-graph">
-                                                    <li style="text-align: unset!important">
-                                                        <section>
-                                                            <h6>${item.oid}</h6>
-                                                        </section>
-                                                    </li>
-                                                    <li><p>${item.createDate}</p></li>
-                                                    <li style="text-align: unset!important">
-                                                        ${common.getFormatPrice(item.price)} đ
-                                                    </li>
-                                                    <li style="text-align: unset!important; color: ${item.status == 1 ? 'green' : item.status == 2 ? 'yellow' : '#843534'}">${item.status == 1 ? 'Paid' : item.status == 2 ? 'Pending' : 'Not Yet'}</li>
-                                                </ul>
-                                            </c:forEach>
-                                        </div>
-                                    </c:if>
 
+                                    </ul>
                                 </div>
+
                             </div>
+
 
                         </div>
                     </div>

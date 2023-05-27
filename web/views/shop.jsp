@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>SportsMagazine Shop Grid WLS</title>
+        <title>Shopping</title>
 
         <!-- Css Files -->
         <link href="views/css/bootstrap.css" rel="stylesheet">
@@ -31,7 +31,10 @@
     </head>
     <body>
 
+        <jsp:useBean class="DAL.CommonForJSP" id="common" />
         <jsp:useBean class="DAL.CategoryDAO" id="cd"/>
+        <jsp:useBean class="DAL.PostDAO" id="postDao" />
+        <jsp:useBean class="DAL.AccountDAO" id="ad" />
 
         <!--// Main Wrapper \\-->
         <div class="sportsmagazine-main-wrapper">
@@ -50,17 +53,24 @@
 
                             <!--// SideBar \\-->
                             <aside class="col-md-3">
-
-
-
+                                
                                 <!--// Widget Cetagories \\-->
-                                <div class="sportsmagazine-widget-heading"><h2>Cetagories</h2></div>
+                                <div class="sportsmagazine-widget-heading"><h2>Categories</h2></div>
                                 <div class="widget widget_cetagories">
-                                    <ul>
-                                        <c:forEach items="${cd.all}" var="item">
-                                            <li><a href="404.html"><input type="checkbox" name="name" style="margin-right: 1rem">${item.title} </a></li>
-                                                </c:forEach>
-                                    </ul>
+                                    <c:set var="category" value="${cd.all}"/>
+                                    <form action="">
+                                        <ul>
+                                            <c:forEach begin="0" end="${category.size() - 1}" var="i">
+                                                <li>
+                                                    <a href="shop?cid=${category.get(i).id}">
+                                                        <input type="checkbox" name="cid" value="${category.get(i).id}"
+                                                               ${categoryCheck[i] ? 'checked' : ''} onclick="this.form.submit()"
+                                                               style="margin-right: 1rem">${category.get(i).title} 
+                                                    </a>
+                                                </li>
+                                            </c:forEach>
+                                        </ul>
+                                    </form>
                                 </div>
                                 <!--// Widget Cetagories \\-->
 
@@ -68,24 +78,21 @@
                                 <div class="sportsmagazine-widget-heading"><h2>Popular Posts</h2></div>
                                 <div class="widget widget_popular_post">
                                     <ul>
-                                        <c:forEach begin="1" end="3" var="i">
+                                        <c:forEach items="${postDao.getTopXPopularPost(3)}" var="item">
                                             <li>
                                                 <div class="sportsmagazine-popular-post">
-                                                    <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post1.jpg" alt=""></a></figure>
+                                                    <figure><a href="postdetail?id=${item.id}"><img src="${item.image.size() != 0 ? item.image.get(0).url : ''}" alt=""></a></figure>
                                                     <div class="sportsmagazine-popular-post-text">
-                                                        <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona ${i}</a></h5>
-                                                        <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
+                                                        <h5 ><a href="postdetail?id=${item.id}">${item.title}</a></h5>
+                                                        <time datetime="2008-02-14 20:00">${common.formatDate(item.createDate, 'dd/MM/yyyy')}</time>
                                                     </div>
                                                     <span></span>
                                                 </div>
                                             </li>
                                         </c:forEach>
-
-                                        
                                     </ul>
                                 </div>
                                 <!--// Widget Popular Post \\-->
-
 
                             </aside>
                             <!--// SideBar \\-->
@@ -113,16 +120,16 @@
                                 <div class="sportsmagazine-pagination">
                                     <ul class="page-numbers">
                                         <li>
-                                            <a class="previous page-numbers" href="shop?page=${page > 1 ? page-1 : page}">
+                                            <a class="previous page-numbers" href="shop?page=${page > 1 ? page - 1 : page}${categoryS != null ? "&cid=" : ""}${categoryS != null ? categoryS : ""}">
                                                 <span aria-label="Next"><i class="fa fa-angle-left"></i></span></a>
                                         </li>
                                         <c:forEach begin="1" end="${numberPage}" var="i">
-                                            <li><a class="page-numbers ${(page == i) ? 'current' : ''}" href="shop?page=${i}">${i}</a></li>
+                                            <li><a class="page-numbers ${(page == i) ? 'current' : ''}" href="shop?page=${i}${categoryS != null ? "&cid=" : ""}${categoryS != null ? categoryS : ""}">${i}</a></li>
 
                                         </c:forEach>
 
                                         <li>
-                                            <a class="next page-numbers" href="shop?page=${page < numberPage ? page+1 : page}">
+                                            <a class="next page-numbers" href="shop?page=${page < numberPage ? page + 1 : page}${categoryS != null ? "&cid=" : ""}${categoryS != null ? categoryS : ""}">
                                                 <span aria-label="Next"><i class="fa fa-angle-right"></i></span>
                                             </a>
                                         </li>

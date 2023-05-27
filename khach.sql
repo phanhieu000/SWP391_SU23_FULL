@@ -127,11 +127,14 @@ GO
 
 CREATE TABLE Contact (
 	id int identity(1, 1) not null,
+	images varchar(100) not null,
 	storeName nvarchar(255) not null,
 	stoerAddress nvarchar(255) not null,
 	storePhone varchar(15) not null,
+	startWorking time not null,
+	endWorking time not null,
 	createDate date not null,
-	
+	isActive bit not null,
 
 	PRIMARY KEY (id)
 )
@@ -502,4 +505,14 @@ INSERT INTO [dbo].[Order] ([price] ,[status] ,[createDate] ,[firstName] ,[lastNa
 VALUES
 		(100000 ,1 ,'2023/05/22' ,N'Phan' ,N'Hiếu' ,'admin@gmail.com' ,N'Hà Nội' ,'0838456798' ,N'Gói Bọc Túi Đen Che Tên Giúp ạ' ,1),
 		(1000000 ,1 ,'2023/05/22' ,N'Phan' ,N'Hiếu' ,'admin@gmail.com' ,N'Hà Nội' ,'0838456798' ,N'Gói Bọc Túi Đen Che Tên Giúp ạ' ,1)
+GO	
+
+INSERT INTO [dbo].[Contact]	([images], [storeName] ,[stoerAddress] ,[storePhone] ,[startWorking] ,[endWorking] ,[createDate], [isActive])
+VALUES	
+		('views/img/contact01.png', N'NEYMARSPORT CN BÌNH THẠNH', N'43A Điện Biên Phủ, Phường 15, Quận Bình Thạnh', '02862713907', '9:00', '21:00', '2023/05/22', 1),
+		('views/img/contact02.png', N'NEYMARSPORT CN QUẬN 5', N'637C Trần Hưng Đạo, Phường 1, Quận 5', '02822456637', '9:00', '21:00', '2023/05/22', 1),
+		('views/img/contact03.png', N'NEYMARSPORT CN THỦ ĐỨC', N'148/7 Hoàng Diệu 2, Phường Linh Chiểu, TP. Thủ Đức', '02862713504', '9:00', '21:00', '2023/05/22', 1),
+		('views/img/contact04.png', N'NEYMARSPORT CN TÂN BÌNH', N'307 Cộng Hoà, Phường 13, Quận Tân Bình', '02822482307', '9:00', '21:00', '2023/05/22', 1),
+		('views/img/contact05.png', N'NEYMARSPORT CN GÒ VẤP', N'1303 Phan Văn Trị, P.10, Q. Gò Vấp, TP.HCM', '02822000230', '9:00', '21:00', '2023/05/22', 1)
+
 GO

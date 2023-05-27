@@ -124,8 +124,10 @@
                                                             </span>
                                                         </li>
                                                         <br>
-                                                        <li class="d-flex justify-content-center" style="float: unset">
+                                                        <li class="" style="float: unset; margin-right: auto; margin-left: auto">
+
                                                             <input value="Save" type="button" onclick=" checkSubmit()">
+
                                                         </li>
                                                     </ul>
                                                 </form>
