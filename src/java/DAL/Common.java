@@ -55,21 +55,7 @@ public class Common {
         return DatatypeConverter.printHexBinary(passwordByte);
     }
 
-    public static String randomCode() {
-        String s = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
-
-        String code = "";
-
-        int min = 0;
-        int max = s.length() - 1;
-
-        for (int i = 1; i <= 6; i++) {
-            int index = (int) (Math.random() * (max - min + 1) + min);
-            code += s.charAt(index) + "";
-        }
-
-        return code;
-    }
+    
 
     public static void sendMail(String userEmail, int type) {
 
@@ -83,6 +69,24 @@ public class Common {
         }
 
     }
+    
+    public static String randomCode() {
+        String s = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
+        // String là 1 mảnh char thôi :> mà có mảng thì sẽ có index để lấy ra
+
+        String code = "";
+
+        int min = 0;
+        int max = s.length() - 1;
+
+        for (int i = 1; i <= 6; i++) {
+            int index = (int) (Math.random() * (max - min + 1) + min); // tạo ra 1 index ngẫu nhiên từ min tới max 
+            code += s.charAt(index) + "";
+            
+        }
+
+        return code;
+    }
 
     private static void sendVerifyMail(String userEmail, String type) {
         // Tạo mã xác thực duy nhất
@@ -92,6 +96,9 @@ public class Common {
         // Lưu mã xác thực trong cơ sở dữ liệu của bạn để sử dụng sau này
         // Trong ví dụ này, chúng ta sẽ in mã xác thực ra màn hình để kiểm tra xem nó hoạt động như thế nào
 //        System.out.println("Verification code: " + uuid);
+        
+        
+        // setup thông tin email gửi đi
         // Thiết lập thông tin email
         final String username = "vinhhtong200502@gmail.com";
         final String password = "tjfpgrzbdhckdmhv";

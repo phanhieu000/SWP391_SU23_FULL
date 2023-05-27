@@ -5,12 +5,15 @@
 
 package Controller.Post;
 
+import DAL.PostDAO;
+import Model.Post;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -53,6 +56,29 @@ public class Post_Controlelr extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
+        PostDAO pd = new PostDAO();
+        List<Post> list = pd.getAllPost();
+        
+        String numberPerPage_raw = request.getParameter("numberPerPage");
+        String xpage = request.getParameter("page");
+        
+        
+        int page = (xpage == null) ? 1 : Integer.parseInt(xpage);
+        int numberPerPage = (numberPerPage_raw == null) ? 1 : Integer.parseInt(numberPerPage_raw);
+        int size = list.isEmpty() ? 0 : list.size();
+        
+        int numberOfPage = ((size % numberPerPage == 0) ? (size / numberPerPage) : (size / numberPerPage + 1));
+        
+        int start = (page - 1) * numberPerPage;
+        int end = Math.min(page * numberPerPage, size);
+        
+        List<Post> listByPage = pd.getListByPage(list, start, end);
+        
+        request.setAttribute("data", listByPage);
+        request.setAttribute("page", page);
+        request.setAttribute("numberOfPage", numberOfPage);
+        
         request.getRequestDispatcher("views/post.jsp").forward(request, response);
     } 
 

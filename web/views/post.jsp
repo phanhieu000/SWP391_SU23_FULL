@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>SportsMagazine Blog Large WLS</title>
+        <title>Posting</title>
 
         <!-- Css Files -->
         <link href="views/css/bootstrap.css" rel="stylesheet">
@@ -26,8 +26,17 @@
         <link href="views/css/color.css" rel="stylesheet">
         <link href="views/css/responsive.css" rel="stylesheet">
 
-
-        
+        <style>
+            .hidden-content {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 25px;
+                -webkit-line-clamp: 4;
+                height: 100px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+            }
+        </style>
     </head>
     <body>
 
@@ -99,20 +108,6 @@
                                 </div>
                                 <!--// Widget Popular Post \\-->
 
-                                <!--// Widget Cetagories \\-->
-                                <div class="sportsmagazine-widget-heading"><h2>Cetagories</h2></div>
-                                <div class="widget widget_cetagories">
-                                    <ul>
-                                        <li><a href="404.html">Championship <span>( 13 )</span></a></li>
-                                        <li><a href="404.html">Super Ball <span>( 12 )</span></a></li>
-                                        <li><a href="404.html">Football <span>( 04 )</span></a></li>
-                                        <li><a href="404.html">Boxing <span>( 08 )</span></a></li>
-                                        <li><a href="404.html">BasketBall <span>( 13 )</span></a></li>
-                                    </ul>
-                                </div>
-                                <!--// Widget Cetagories \\-->
-
-
                                 <!--// Widget Flicker Images \\-->
                                 <div class="sportsmagazine-widget-heading"><h2>Flicker Images</h2></div>
                                 <div class="widget widget_gallery">
@@ -136,14 +131,14 @@
                             <div class="col-md-9">
                                 <div class="sportsmagazine-blog sportsmagazine-bloglarge">
                                     <ul class="row">
-                                        <c:forEach begin="1" end="5" var="i">
+                                        <c:forEach items="${data}" var="item">
                                             <li class="col-md-12">
-                                                <figure><a href="postdetail?id=${i}"><img src="views/extra-images/blog-large-img1.jpg" alt=""><i class="fa fa-link"></i></a></figure>
+                                                <figure><a href="postdetail?id=${item.id}"><img src="views/extra-images/blog-large-img1.jpg" alt=""><i class="fa fa-link"></i></a></figure>
                                                 <div class="sportsmagazine-bloglarge-text">
-                                                    <time datetime="2008-02-14 20:00">August 21st, 2017</time>
-                                                    <h3><a href="postdetail?id=${i}">The new eco friendly stadium won a Leafy power break fast regimen Award in 2016</a></h3>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac malesuada ante. Curabitur lacinia diam tempus tem cons ectetur. Sed vitae dignissim purus, eget aliquam libero. Duis et arcu a erat venenatis ornare eget nec urna.vNulla volu tpat luctus venenatis. Aliquam tellus dui, luctus nec.</p>
-                                                    <a href="postdetail?id=${i}" class="sportsmagazine-readmore-btn">READ MORE <i class="fa fa-arrow-circle-o-right"></i></a>
+                                                    <time datetime="2008-02-14 20:00">${item.createDate}</time>
+                                                    <h3 ><a href="postdetail?id=${item.id}">${item.title}</a></h3>
+                                                    <p class="hidden-content">${item.detail}</p>
+                                                    <a href="postdetail?id=${item.id}" class="sportsmagazine-readmore-btn">READ MORE <i class="fa fa-arrow-circle-o-right"></i></a>
                                                     <ul class="sportsmagazine-article-options">
                                                         <li><a href="#404.html"><i class="fa fa-thumbs-o-up"></i> 320</a></li>
                                                         <li><a href="#404.html"><i class="fa fa-eye"></i> 840</a></li>
@@ -159,12 +154,18 @@
                                 <!--// Pagination \\-->
                                 <div class="sportsmagazine-pagination">
                                     <ul class="page-numbers">
-                                        <li><a class="previous page-numbers" href="404.html"><span aria-label="Next"><i class="fa fa-angle-left"></i></span></a></li>
-                                        <li><span class="page-numbers current">1</span></li>
-                                        <li><a class="page-numbers" href="404.html">2</a></li>
-                                        <li><a class="page-numbers" href="404.html">3</a></li>
-                                        <li><a class="page-numbers" href="404.html">4</a></li>
-                                        <li><a class="next page-numbers" href="404.html"><span aria-label="Next"><i class="fa fa-angle-right"></i></span></a></li>
+                                        <li>
+                                            <a class="previous page-numbers" href="post?page=${page > 1 ? page - 1 : page }">
+                                                <span aria-label="Prev"><i class="fa fa-angle-left"></i></span>
+                                            </a>
+                                        </li>
+                                        <c:forEach begin="1" end="${numberOfPage}" var="i">
+                                            <li><a class="page-numbers ${i == page ? 'current' : ''}" href="post?page=${i}">${i}</a></li>
+                                        </c:forEach>
+                                        <li>
+                                            <a class="next page-numbers" href="post?page=${page < numberOfPage ? page + 1 : page }">
+                                                <span aria-label="Next"><i class="fa fa-angle-right"></i></span>
+                                            </a></li>
                                     </ul>
                                 </div>
                                 <!--// Pagination \\-->

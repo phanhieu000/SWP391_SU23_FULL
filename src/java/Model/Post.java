@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 public class Post {
-    
+
     private int id;
     private String title;
     private String url;
@@ -14,13 +14,13 @@ public class Post {
     private Boolean published;
     private int like;
     private int view;
-    private Account account;
+    private int ownerID;
     private List<Image> image;
 
     public Post() {
     }
 
-    public Post(int id, String title, String url, String detail, Date createDate, Date updateDate, Boolean published, int like, int view, Account account, List<Image> image) {
+    public Post(int id, String title, String url, String detail, Date createDate, Date updateDate, Boolean published, int like, int view, int ownerID, List<Image> image) {
         this.id = id;
         this.title = title;
         this.url = url;
@@ -30,24 +30,8 @@ public class Post {
         this.published = published;
         this.like = like;
         this.view = view;
-        this.account = account;
+        this.ownerID = ownerID;
         this.image = image;
-    }
-
-    public int getLike() {
-        return like;
-    }
-
-    public void setLike(int like) {
-        this.like = like;
-    }
-
-    public int getView() {
-        return view;
-    }
-
-    public void setView(int view) {
-        this.view = view;
     }
 
     public int getId() {
@@ -106,12 +90,28 @@ public class Post {
         this.published = published;
     }
 
-    public Account getAccount() {
-        return account;
+    public int getLike() {
+        return like;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
+    }
+
+    public int getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
     }
 
     public List<Image> getImage() {
@@ -122,10 +122,6 @@ public class Post {
         this.image = image;
     }
 
-    
 
-   
-    
-    
 
 }
