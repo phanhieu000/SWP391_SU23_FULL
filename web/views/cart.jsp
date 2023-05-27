@@ -4,6 +4,7 @@
     Author     : phanh
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,8 @@
             <!--// Header \\-->
             <jsp:include page="common/header/header.jsp" />
             <!--// Header \\-->
+            
+            <jsp:useBean class="DAL.CommonForJSP" id="common" />
 
             <!--// Main Content \\-->
             <div class="sportsmagazine-main-content">
@@ -42,78 +45,25 @@
                                             <th>Quantity</th>
                                             <th>Total</th>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <figure><img src="extra-images/shopping-cart-img1.jpg" alt=""></figure>
-                                                <div class="player-stats-text">
-                                                    <h6>Sun Sneakers</h6>
-                                                    <div class="star-rating"><span class="star-rating-box" style="width:59%"></span></div>
-                                                </div>
-                                            </td>
-                                            <td>$28.00</td>
-                                            <td>8,5 (USA) </td>
-                                            <td><a class="color-change" href="#"></a></td>
-                                            <td><input name="quantity" min="01" max="10" type="number" value="01"></td>
-                                            <td>$56.00<a class="remove-line" href="#"><i class="fa fa-times"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <figure><img src="extra-images/shopping-cart-img2.jpg" alt=""></figure>
-                                                <div class="player-stats-text">
-                                                    <h6>Sun Sneakers</h6>
-                                                    <div class="star-rating"><span class="star-rating-box" style="width:59%"></span></div>
-                                                </div>
-                                            </td>
-                                            <td>$28.00</td>
-                                            <td>8,5 (USA) </td>
-                                            <td><a class="color-change one" href="#"></a></td>
-                                            <td><input name="quantity" min="01" max="10" type="number" value="02"></td>
-                                            <td>$56.00<a class="remove-line" href="#"><i class="fa fa-times"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <figure><img src="extra-images/shopping-cart-img3.jpg" alt=""></figure>
-                                                <div class="player-stats-text">
-                                                    <h6>Sun Sneakers</h6>
-                                                    <div class="star-rating"><span class="star-rating-box" style="width:59%"></span></div>
-                                                </div>
-                                            </td>
-                                            <td>$28.00</td>
-                                            <td>8,5 (USA) </td>
-                                            <td><a class="color-change two" href="#"></a></td>
-                                            <td><input name="quantity" min="01" max="10" type="number" value="03"></td>
-                                            <td>$56.00<a class="remove-line" href="#"><i class="fa fa-times"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <figure><img src="extra-images/shopping-cart-img4.jpg" alt=""></figure>
-                                                <div class="player-stats-text">
-                                                    <h6>Sun Sneakers</h6>
-                                                    <div class="star-rating"><span class="star-rating-box" style="width:59%"></span></div>
-                                                </div>
-                                            </td>
-                                            <td>$28.00</td>
-                                            <td>8,5 (USA) </td>
-                                            <td><a class="color-change three" href="#"></a></td>
-                                            <td><input name="quantity" min="01" max="10" type="number" value="04"></td>
-                                            <td>$56.00<a class="remove-line" href="#"><i class="fa fa-times"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <figure><img src="extra-images/shopping-cart-img2.jpg" alt=""></figure>
-                                                <div class="player-stats-text">
-                                                    <h6>Sun Sneakers</h6>
-                                                    <div class="star-rating"><span class="star-rating-box" style="width:59%"></span></div>
-                                                </div>
-                                            </td>
-                                            <td>$28.00</td>
-                                            <td>8,5 (USA) </td>
-                                            <td><a class="color-change one" href="#"></a></td>
-                                            <td><input name="quantity" min="01" max="10" type="number" value="05"></td>
-                                            <td>$56.00<a class="remove-line" href="#"><i class="fa fa-times"></i></a></td>
-                                        </tr>
+                                        <c:forEach items="${cart.items}" var="item">
+                                            <tr>
+                                                <td>
+                                                    <figure><img src="" alt="Ảnh SP? Lười Thêm"></figure>
+                                                    <div class="player-stats-text">
+                                                        <h6>${item.product.name}</h6>
+                                                        <div>${item.product.category.title}</div>
+                                                    </div>
+                                                </td>
+                                                <td>${common.getFormatPrice(item.product.price)} VND</td>
+                                                <td>${item.size} </td>
+                                                <td><a class="color-change one" href="#">${item.color}</a></td>
+                                                <td><input name="quantity" min="01" max="10" type="number" value="${item.quantity}"></td>
+                                                <td>${common.getFormatPrice(item.subTotal)}<a class="remove-line" href="#"><i class="fa fa-times"></i></a></td>
+                                            </tr>
+                                        </c:forEach>
+
                                     </table>
-                                    
+
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -122,24 +72,18 @@
                                     <ul>
                                         <li>
                                             <h6>Cart Subtotal</h6>
-                                            <span>$242.00</span>
+                                            <span>${common.getFormatPrice(cart.totalMoney)} VND</span>
                                         </li>
-                                        <li>
-                                            <h6>Shipping And Handling</h6>
-                                            <span>$50.00</span>
-                                        </li>
-                                        <li>
-                                            <h6>Coupone Code</h6>
-                                            <span>-$10.00</span>
-                                        </li>
+                                        
+                                        
                                         <li class="total-cart">
                                             <h6>Cart Total</h6>
-                                            <span>$282.00</span>
+                                            <span>${common.getFormatPrice(cart.totalMoney)} VND</span>
                                         </li>
                                     </ul>
                                     <span><a href="checkout" class="cart-checkout-btn">Place Your Order Now</a></span>
                                 </div>
-                                
+
                             </div>
 
                         </div>
@@ -158,7 +102,7 @@
         </div>
         <!--// Main Wrapper \\-->
 
-       <jsp:include page="common/plugins/link.jsp" />
+        <jsp:include page="common/plugins/link.jsp" />
 
     </body>
 

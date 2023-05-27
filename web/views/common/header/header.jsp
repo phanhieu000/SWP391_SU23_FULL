@@ -8,6 +8,7 @@
     <jsp:include page="bigNavbar.jsp" />
     <!--// MainSection \\-->
     <div id="toast"></div>
+    <span id="message" >${toast__message}</span>
 
 </header>
 

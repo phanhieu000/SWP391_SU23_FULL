@@ -81,7 +81,7 @@
                                         <c:forEach items="${data}" var="item">
                                             <li class="col-md-4">
                                                 <figure>
-                                                    <a href="shopdetail?id=${item.id}"><img src="views/extra-images/shop-grid-img1.jpg" alt=""><i class="fa fa-shopping-cart"></i></a>
+                                                    <a href="addToCart?id=${item.id}&quantity=1&size=size&color=color"><img src="views/extra-images/shop-grid-img1.jpg" alt=""><i class="fa fa-shopping-cart"></i></a>
                                                     <div class="star-rating"><span class="star-rating-box" style="width:69%"></span></div>
                                                 </figure>
                                                 <section>

@@ -1,6 +1,7 @@
 package Controller;
 
 import DAL.AccountDAO;
+import DAL.SuportMessage;
 import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -66,24 +67,26 @@ public class Login_Controller extends HttpServlet {
             throws ServletException, IOException {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
+        HttpSession session = request.getSession();
 
         AccountDAO ad = new AccountDAO();
 
         Account a = ad.login(userName, password);
 
         if (a == null) {
-            request.setAttribute("error", "UserName or Password incorrect !");
+            SuportMessage.sendToast(session, 0, "Tài Khoản Hoặc Mật Khẩu Không Chính Xác !");
             request.getRequestDispatcher("views/login.jsp").forward(request, response);
         } else {
             if (a.getIsBlock()) {
-                request.setAttribute("error", "Your Account has Blocked !");
+                SuportMessage.sendToast(session, 0, "Tài Khoản Của Bạn Đã Bị Block !");
                 request.getRequestDispatcher("views/login.jsp").forward(request, response);
             }else if (!a.getIsVerify()) {
-                request.setAttribute("error", "Your Account is not verify email !");
+                SuportMessage.sendToast(session, 2, "Tài Khoản Của Bạn Chưa Verify Email !");
                 request.getRequestDispatcher("views/login.jsp").forward(request, response);
             }else {
-                HttpSession session = request.getSession();
+                
                 session.setAttribute("account", a);
+                SuportMessage.sendToast(session, 1, "Đăng Nhập Thành Công !");
                 response.sendRedirect("home");
             }
         }

@@ -107,23 +107,7 @@
         </div>
         <!--// Main Wrapper \\-->
 
-
-
-
-        
-
-
-        <!-- jQuery (necessary for JavaScript plugins) -->
-        <script type="text/javascript" src="views/script/jquery.js"></script>
-        <script type="text/javascript" src="views/script/bootstrap.min.js"></script>
-        <script type="text/javascript" src="views/script/slick.slider.min.js"></script>
-        <script type="text/javascript" src="views/script/jquery.countdown.min.js"></script>
-        <script type="text/javascript" src="views/script/fancybox.pack.js"></script>
-        <script type="text/javascript" src="views/script/isotope.min.js"></script>
-        <script type="text/javascript" src="views/script/progressbar.js"></script>
-        <script type="text/javascript" src="views/script/counter.js"></script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-        <script type="text/javascript" src="views/script/functions.js"></script>
+        <jsp:include page="common/plugins/script.jsp" />
 
     </body>
 

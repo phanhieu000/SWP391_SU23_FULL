@@ -1,5 +1,9 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!-- mã hóa mật khẩu -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
 <!-- jQuery (necessary for JavaScript plugins) -->
-<<script type="text/javascript" src="views/script/jquery.js"></script>
+<script type="text/javascript" src="views/script/jquery.js"></script>
 <script type="text/javascript" src="views/script/bootstrap.min.js"></script>
 <script type="text/javascript" src="views/script/slick.slider.min.js"></script>
 <script type="text/javascript" src="views/script/jquery.countdown.min.js"></script>
@@ -13,6 +17,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         const message = document.getElementById('message');
+        
 
         if (message.innerHTML !== '') {
 
@@ -36,7 +41,7 @@
                 const delay = (duration / 1000).toFixed(2);
 
                 toast.classList.add("toast", `toast--${toast__type}`);
-                toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+                toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${deplay}s forwards`;
 
                 toast.innerHTML = `
                     <div class="toast__icon">
@@ -75,13 +80,13 @@
 
     function checkOldPassword() {
         var oldPass = document.getElementById('oldpass');
-        var oldPassMD5 = oldPassMD5 = convertPassToMD5(oldPass.value);
+        var oldPassMD5 = convertPassToMD5(oldPass.value);
 
         var message = document.getElementById('messageOldPass');
 
         if (oldPassMD5 !== currentPass) {
             oldPass.style.border = '1px solid red';
-            message.innerHTML = 'M?t Kh?u C? Kh�ng ?�ng !';
+            message.innerHTML = 'Mật Khẩu Hiện Tại Không Chính Xác';
             message.style.color = 'red';
             return false;
         } else {
@@ -97,9 +102,9 @@
         var newPass = document.getElementById('newpass');
 
         var message = document.getElementById('messageNewPass');
-        if (newPass.value === currentPass) {
+        if (convertPassToMD5(newPass.value) === currentPass) {
             newPass.style.border = '1px solid red';
-            message.innerHTML = 'M?t Kh?u M?i Kh�ng ???c Tr�ng V?i M?t Kh?u C? ';
+            message.innerHTML = 'Mật Khẩu Không Được Trùng Với Mật Khẩu Cũ ';
             message.style.color = 'red';
             return false;
 
@@ -119,7 +124,7 @@
 
         if (newPass.value !== confirmPass.value) {
             confirmPass.style.border = '1px solid red';
-            message.innerHTML = 'M?t Kh?u Comfirm Kh�ng Gi?ng M?t Kh?u M?i ';
+            message.innerHTML = 'Mật Khẩu Xác Nhận Không Giống Với Mật Khẩu Mới ';
             message.style.color = 'red';
             return false;
 
@@ -139,3 +144,10 @@
     }
 
 </script>
+
+
+<%
+        session.removeAttribute("toast__message");
+        session.removeAttribute("toast__icons");
+        session.removeAttribute("toast__type");
+%>

@@ -7,13 +7,13 @@
         <title>Profiles</title>
     </head>
     <body>
-        
+
         <div class="sportsmagazine-main-wrapper">
 
             <!--// Header \\-->
             <jsp:include page="common/header/header.jsp" />
             <!--// Header \\-->
-            
+
             <!--// Main Content \\-->
             <div class="sportsmagazine-main-content">
                 <!--// Main Section \\-->
@@ -75,10 +75,6 @@
                                                             <label>Birth Day: </label>
                                                             <input value="${account.birthday}" name="birthday" type="date">
                                                         </li>
-
-                                                        <li class="d-flex justify-content-center">
-                                                            <span id="message" >${toast__message}</span>
-                                                        </li>
                                                         <br>
                                                         <li style="float: unset; margin-right: auto; margin-left: auto; width: fit-content;">
                                                             <input value="Save" type="submit">
@@ -88,7 +84,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>     
                                 <!--// Tabs \\-->
                             </div>
                         </div>
@@ -101,7 +97,6 @@
             <!--// Footer \\-->
             <jsp:include page="common/footer/footer.jsp" /> 
             <!--// Footer \\-->
-
             <div class="clearfix"></div>
         </div>
 

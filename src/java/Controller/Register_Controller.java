@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Controller;
 
 import DAL.AccountDAO;
 import DAL.Common;
+import DAL.SuportForMail;
+import DAL.SuportMessage;
 import Model.Account;
 import Model.Role;
 import java.io.IOException;
@@ -14,11 +12,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-/**
- *
- * @author phanh
- */
 public class Register_Controller extends HttpServlet {
 
     /**
@@ -76,26 +71,28 @@ public class Register_Controller extends HttpServlet {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
+        HttpSession session = request.getSession();
 
         AccountDAO ad = new AccountDAO();
 
         if (!ad.checkExist(userName)) {
             boolean flag = ad.register(new Account(-1, userName, password, email, "", "", "", "", Common.getCurrentDate(), Common.getCurrentDate(), false, false, new Role()));
+
             if (flag) {
-                request.setAttribute("message", "A Code sent to your Email !");
-                Common.sendMail(email, 1);
+                SuportMessage.sendToast(session, 3, "A Code Has Send To Your Email !");
+                SuportForMail.sendMail(email, 1);
             } else {
                 boolean checkMail = ad.checkEmailExit(email);
-                
-                if(checkMail){
-                    request.setAttribute("error", "Email Đã Tồn Tại");
-                }else {
-                    request.setAttribute("error", "Something Wrong !");
+
+                if (checkMail) {
+                    SuportMessage.sendToast(session, 2, "Email Này Đã Tồn Tại !");
+                } else {
+                    SuportMessage.sendToast(session, 0, "Có Lỗi Xảy Ra. Thử Lại Sau !");
                 }
-                
+
             }
         } else {
-            request.setAttribute("error", "Tài Khoản Đã Tồn Tại!");
+            SuportMessage.sendToast(session, 2, "Tài Khoản Này Đã Tồn Tại !");
 
         }
         request.getRequestDispatcher("views/register.jsp").forward(request, response);

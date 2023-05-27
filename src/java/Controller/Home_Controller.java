@@ -6,19 +6,18 @@
 package Controller;
 
 import DAL.ProductDAO;
+import Model.Cart.Cart;
 import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 
-/**
- *
- * @author phanh
- */
+
 public class Home_Controller extends HttpServlet {
    
     /** 
@@ -60,6 +59,17 @@ public class Home_Controller extends HttpServlet {
         ProductDAO pd = new ProductDAO();
         
         List<Product> list = pd.getAll();
+        Cookie arr[] = request.getCookies();
+        String txt = "";
+
+        for (Cookie item : arr) {
+            if (item.getName().equals("cart")) {
+                txt = txt + item.getValue();
+            }
+        }
+        Cart cart = new Cart(txt, list);
+        request.setAttribute("cart", cart);
+        request.setAttribute("size", cart.getItems().size());
         
         request.setAttribute("product", list);
         request.getRequestDispatcher("views/home.jsp").forward(request, response);

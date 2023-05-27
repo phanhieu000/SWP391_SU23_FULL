@@ -5,7 +5,7 @@
 package Controller;
 
 import DAL.AccountDAO;
-import DAL.Common;
+import DAL.SuportMessage;
 import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -91,14 +91,13 @@ public class ChangePass_Controller extends HttpServlet {
             success = ad.changePass(a);
 
             if (success) {
-                request.setAttribute("message", "Change Password Successful !");
+                SuportMessage.sendToast(session, 1, "Thay Đổi Mật Khẩu Thành Công !");
             } else {
-                request.setAttribute("message", "Something wrong !");
-
+               SuportMessage.sendToast(session, 0, "Có Lỗi Xảy Ra. Thử Lại Sau !");
             }
         }
         
-        request.getRequestDispatcher("views/changePass.jsp").forward(request, response);
+        response.sendRedirect("changePass");
 
     }
 

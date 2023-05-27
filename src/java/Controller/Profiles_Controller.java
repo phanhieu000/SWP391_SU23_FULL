@@ -6,6 +6,7 @@ package Controller;
 
 import DAL.AccountDAO;
 import DAL.Common;
+import DAL.SuportMessage;
 import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -101,17 +102,12 @@ public class Profiles_Controller extends HttpServlet {
         }
 
         if (success) {
-            request.setAttribute("toast__message", "Update Successful !");
-            request.setAttribute("toast__type", "success");
-            request.setAttribute("toast__icons", "fa-solid fa-circle-check fa-beat");
-            request.setAttribute("toast__title", "Update Profiles");
-
+            SuportMessage.sendToast(session, 1, "Update Profiles Successful.");
         } else {
-            request.setAttribute("message", "Something wrong !");
+            SuportMessage.sendToast(session, 0, "Update Profiles Failed.");
         }
 
-        request.getRequestDispatcher("views/profile.jsp").forward(request, response);
-
+        response.sendRedirect("profiles");
     }
 
     /**

@@ -5,12 +5,14 @@
 package Controller;
 
 import DAL.AccountDAO;
+import DAL.SuportMessage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -70,6 +72,7 @@ public class ConfirmMail_Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String code = request.getParameter("code");
 
@@ -77,23 +80,25 @@ public class ConfirmMail_Controller extends HttpServlet {
 
         String lastCode = ad.getLastOTPCodeByEmail(email);
 
-        boolean flag = false;
+        
+        if (ad.checkEmailExit(email)) {
+            if (!lastCode.isEmpty()) {
 
-        if (!lastCode.isEmpty()) {
-
-            if (code.equals(lastCode)) {
-                flag = ad.verifyAccount(email);
-                ad.deActiveCodeLast(ad.getLastOTPByEmail(email));
+                if (code.equals(lastCode)) {
+                    ad.verifyAccount(email);
+                    SuportMessage.sendToast(session, 1, "Tài Khoản Của Bạn Đã Xác Thực Thành Công !");
+                    ad.deActiveCodeLast(ad.getLastOTPByEmail(email));
+                } else {
+                    SuportMessage.sendToast(session, 2, "Mã Code Không Đúng !");
+                }
+            }else {
+                SuportMessage.sendToast(session, 0, "Có Lỗi Xảy Ra. Thử Lại Sau !");
             }
-        }
-        
-        if(flag) {
-            request.setAttribute("message", "Verify Successful !");
         }else {
-            request.setAttribute("message", "Something Wrong !");
+            SuportMessage.sendToast(session, 2, "Email Không Tồn Tại !");
         }
-        
-        request.getRequestDispatcher("views/comfirmMail.jsp").forward(request, response);
+
+        response.sendRedirect("confirmMail");
     }
 
     /**

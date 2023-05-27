@@ -7,6 +7,7 @@ package Controller;
 
 import DAL.AccountDAO;
 import DAL.Common;
+import DAL.SuportForMail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -76,7 +77,7 @@ public class ForgotPassword_Controller extends HttpServlet {
        
        if(hasEmail){
            
-           Common.sendMail(email, 2);
+           SuportForMail.sendMail(email, 2);
            
            request.setAttribute("message", "Mật khẩu mới đã được gửi vào mail");
            
