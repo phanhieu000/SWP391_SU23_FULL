@@ -77,7 +77,6 @@ public class ChangePass_Controller extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String newPass = request.getParameter("newPassword");
-        String md5 = Common.convertPassToMD5(newPass);
 
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("account");
@@ -87,7 +86,7 @@ public class ChangePass_Controller extends HttpServlet {
 
             AccountDAO ad = new AccountDAO();
             
-            a.setPassword(md5);
+            a.setPassword(newPass);
 
             success = ad.changePass(a);
 

@@ -5,6 +5,8 @@
 
 package Controller;
 
+import DAL.AccountDAO;
+import DAL.Common;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -66,7 +68,26 @@ public class ForgotPassword_Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+       String email = request.getParameter("email");
+       
+       AccountDAO ad = new AccountDAO();
+       
+       boolean hasEmail = ad.checkEmailExit(email);
+       
+       if(hasEmail){
+           
+           Common.sendMail(email, 2);
+           
+           request.setAttribute("message", "Mật khẩu mới đã được gửi vào mail");
+           
+       }else {
+           request.setAttribute("message", "Email Không tồn tại !");
+           
+       }
+       
+       request.getRequestDispatcher("views/forgotPassword.jsp").forward(request, response);
+       
+       
     }
 
     /** 

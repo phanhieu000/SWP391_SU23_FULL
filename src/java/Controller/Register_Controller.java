@@ -83,6 +83,7 @@ public class Register_Controller extends HttpServlet {
             boolean flag = ad.register(new Account(-1, userName, password, email, "", "", "", "", Common.getCurrentDate(), Common.getCurrentDate(), false, false, new Role()));
             if (flag) {
                 request.setAttribute("message", "A Code sent to your Email !");
+                Common.sendMail(email, 1);
             } else {
                 boolean checkMail = ad.checkEmailExit(email);
                 

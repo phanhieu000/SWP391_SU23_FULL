@@ -299,8 +299,6 @@ CREATE TABLE OTP(
 	isActive bit not null,
 
 
-	account varchar(150) not null,
-
 	PRIMARY KEY (id)
 )
 GO
@@ -359,9 +357,7 @@ ADD CONSTRAINT fk_comment_product FOREIGN KEY (pid) REFERENCES Product (id),
 	CONSTRAINT fk_comment_account FOREIGN KEY (aid) REFERENCES Account (id)
 GO
 
-ALTER TABLE OTP 
-ADD CONSTRAINT fk_OTP_account FOREIGN KEY (account) REFERENCES Account(userName)
-GO
+
 
 
 INSERT INTO [dbo].[Role] ([title] ,[createDate])
