@@ -47,6 +47,9 @@
             <jsp:include page="common/header/header.jsp" />
             <!--// Header \\-->
 
+            <jsp:useBean class="DAL.CommonForJSP" id="common" />
+            <jsp:useBean class="DAL.AccountDAO" id="ad" />
+            <jsp:useBean class="DAL.PostDAO" id="postDAO" />
 
 
             <!--// Main Content \\-->
@@ -64,46 +67,20 @@
                                 <div class="sportsmagazine-widget-heading"><h2>Popular Posts</h2></div>
                                 <div class="widget widget_popular_post">
                                     <ul>
-                                        <li>
-                                            <div class="sportsmagazine-popular-post">
-                                                <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post1.jpg" alt=""></a></figure>
-                                                <div class="sportsmagazine-popular-post-text">
-                                                    <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona</a></h5>
-                                                    <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
+                                        <c:forEach items="${postDAO.getTopXPopularPost(5)}" var="item">
+                                            <li>
+                                                <div class="sportsmagazine-popular-post">
+                                                    <figure><a href="postdetail?id=${item.id}"><img style="height: 70px; width: 70px" src="${item.image.size() != 0 ? item.image.get(0).url : ''}" alt="Ảnh Post :> Bị lỗi rồi khỏi xem đi"></figure>
+                                                    <div class="sportsmagazine-popular-post-text">
+                                                        <h5><a href="blog-detail.html">${item.title}</a></h5>
+                                                        <time datetime="2008-02-14 20:00">${common.formatDate(item.createDate, 'dd/MM/yyyy')}</time>
+                                                    </div>
+                                                    <span></span>
                                                 </div>
-                                                <span></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="sportsmagazine-popular-post">
-                                                <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post2.jpg" alt=""></a></figure>
-                                                <div class="sportsmagazine-popular-post-text">
-                                                    <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona</a></h5>
-                                                    <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
-                                                </div>
-                                                <span></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="sportsmagazine-popular-post">
-                                                <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post3.jpg" alt=""></a></figure>
-                                                <div class="sportsmagazine-popular-post-text">
-                                                    <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona</a></h5>
-                                                    <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
-                                                </div>
-                                                <span></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="sportsmagazine-popular-post">
-                                                <figure><a href="blog-detail.html"><img src="views/extra-images/widget-popular-post4.jpg" alt=""></a></figure>
-                                                <div class="sportsmagazine-popular-post-text">
-                                                    <h5><a href="blog-detail.html">Mark Johnson has as acture and is gona</a></h5>
-                                                    <time datetime="2008-02-14 20:00">August 23rd, 2016</time>
-                                                </div>
-                                                <span></span>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        </c:forEach> 
+
+
                                     </ul>
                                 </div>
                                 <!--// Widget Popular Post \\-->
@@ -133,16 +110,16 @@
                                     <ul class="row">
                                         <c:forEach items="${data}" var="item">
                                             <li class="col-md-12">
-                                                <figure><a href="postdetail?id=${item.id}"><img src="views/extra-images/blog-large-img1.jpg" alt=""><i class="fa fa-link"></i></a></figure>
+                                                <figure><a href="postdetail?id=${item.id}"><img style="height: 60vh" src="${item.image.size() != 0 ? item.image.get(0).url : ''}" alt="Ảnh Post :> Bị lỗi rồi khỏi xem đi"><i class="fa fa-link"></i></a></figure>
                                                 <div class="sportsmagazine-bloglarge-text">
-                                                    <time datetime="2008-02-14 20:00">${item.createDate}</time>
+                                                    <time datetime="2008-02-14 20:00">${common.formatDate(item.createDate, 'dd/MM/yyyy')}</time>
                                                     <h3 ><a href="postdetail?id=${item.id}">${item.title}</a></h3>
                                                     <p class="hidden-content">${item.detail}</p>
                                                     <a href="postdetail?id=${item.id}" class="sportsmagazine-readmore-btn">READ MORE <i class="fa fa-arrow-circle-o-right"></i></a>
                                                     <ul class="sportsmagazine-article-options">
-                                                        <li><a href="#404.html"><i class="fa fa-thumbs-o-up"></i> 320</a></li>
-                                                        <li><a href="#404.html"><i class="fa fa-eye"></i> 840</a></li>
-                                                        <li><a href="#404.html"><i class="fa fa-user"></i> Julia Martyn</a></li>
+                                                        <li><a href="#404.html"><i class="fa fa-thumbs-o-up"></i> ${item.like}</a></li>
+                                                        <li><a href="#404.html"><i class="fa fa-eye"></i> ${item.view}</a></li>
+                                                        <li><a href="#404.html"><i class="fa fa-user"></i> ${ad.getAccountByID(item.ownerID).fullName}</a></li>
                                                     </ul>
                                                 </div>
                                             </li>
@@ -161,7 +138,7 @@
                                         </li>
                                         <c:forEach begin="1" end="${numberOfPage}" var="i">
                                             <li><a class="page-numbers ${i == page ? 'current' : ''}" href="post?page=${i}">${i}</a></li>
-                                        </c:forEach>
+                                            </c:forEach>
                                         <li>
                                             <a class="next page-numbers" href="post?page=${page < numberOfPage ? page + 1 : page }">
                                                 <span aria-label="Next"><i class="fa fa-angle-right"></i></span>

@@ -4,6 +4,7 @@
     Author     : phanh
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +37,8 @@
             <jsp:include page="common/header/header.jsp" />
             <!--// Header \\-->
 
-           
+            <jsp:useBean class="DAL.CommonForJSP" id="common" />
+
 
             <!--// Main Content \\-->
             <div class="sportsmagazine-main-content">
@@ -48,27 +50,32 @@
 
                             <div class="col-md-12">
                                 <div class="sportsmagazine-wishlist">
-                                    <h4>My Order (5)</h4>
+                                    <h4>My Order (${data.size()})</h4>
                                     <div class="sportsmagazine-wishlist-graph">
                                         <ul>
-                                            <li>Product Info</li>
-                                            <li>Description</li>
+                                            <li>Order ID</li>
+                                            <li>Time</li>
                                             <li>Price</li>
-                                            <li>Availability</li>
+                                            <li>Status</li>
                                         </ul>
-                                        <ul class="wishlist-graph">
-                                            <li>
-                                                <figure><img src="views/extra-images/shopping-cart-img1.jpg" alt=""></figure>
-                                                <section>
-                                                    <h6>Sundown Sneakers</h6>
-                                                    <div class="star-rating"><span class="star-rating-box" style="width:59%"></span></div>
-                                                </section>
-                                            </li>
-                                            <li><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac malesuada ante. Curabitur lacinia diam.</p></li>
-                                            <li>$28.00</li>
-                                            <li>In Stock</li>
-                                        </ul>
-                                        
+
+                                        <c:forEach items="${data}" var="item">
+                                            <ul class="wishlist-graph">
+                                                <li style="text-align: unset!important">
+                                                    <section>
+                                                        <h6>${item.oid}</h6>
+                                                    </section>
+                                                </li>
+                                                <li><p>${item.createDate}</p></li>
+                                                <li style="text-align: unset!important">
+                                                    ${common.getFormatPrice(item.price)} đ
+                                                </li>
+                                                <li style="text-align: unset!important; color: ${item.status == 1 ? 'green' : item.status == 2 ? 'yellow' : '#843534'}">${item.status == 1 ? 'Paid' : item.status == 2 ? 'Pending' : 'Not Yet'}</li>
+                                            </ul>
+                                        </c:forEach>
+
+
+
                                     </div>
                                 </div>
                             </div>

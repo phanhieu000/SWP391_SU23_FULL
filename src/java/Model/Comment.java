@@ -10,26 +10,38 @@ public class Comment {
 
     private int id;
     private String content;
-    private int rate;
     private Date createDate;
     private Date updateDate;
     private Boolean published;
     private int pid;
-    private Account account;
+    private int aid;
 
     public Comment() {
     }
 
-    public Comment(int id, String content, int rate, Date createDate, Date updateDate, Boolean published, int pid, Account account) {
+    public Comment(int id, String content, Date createDate, Date updateDate, Boolean published, int pid, int aid) {
         this.id = id;
         this.content = content;
-        this.rate = rate;
         this.createDate = createDate;
         this.updateDate = updateDate;
         this.published = published;
         this.pid = pid;
-        this.account = account;
+        this.aid = aid;
     }
+
+    
+
+    
+
+    public int getAid() {
+        return aid;
+    }
+
+    public void setAid(int aid) {
+        this.aid = aid;
+    }
+
+    
 
     public int getId() {
         return id;
@@ -47,13 +59,7 @@ public class Comment {
         this.content = content;
     }
 
-    public int getRate() {
-        return rate;
-    }
-
-    public void setRate(int rate) {
-        this.rate = rate;
-    }
+    
 
     public Date getCreateDate() {
         return createDate;
@@ -87,15 +93,6 @@ public class Comment {
         this.pid = pid;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-    
-    
     
     
 

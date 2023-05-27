@@ -65,7 +65,7 @@ public class Post_Controlelr extends HttpServlet {
         
         
         int page = (xpage == null) ? 1 : Integer.parseInt(xpage);
-        int numberPerPage = (numberPerPage_raw == null) ? 1 : Integer.parseInt(numberPerPage_raw);
+        int numberPerPage = (numberPerPage_raw == null) ? 6 : Integer.parseInt(numberPerPage_raw);
         int size = list.isEmpty() ? 0 : list.size();
         
         int numberOfPage = ((size % numberPerPage == 0) ? (size / numberPerPage) : (size / numberPerPage + 1));

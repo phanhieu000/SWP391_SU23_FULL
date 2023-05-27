@@ -5,12 +5,16 @@
 
 package Controller.Cart;
 
+import DAL.OrderDAO;
+import Model.Account;
+import Model.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -53,6 +57,14 @@ public class MyOrder_Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
+        
+        Account a = (Account)request.getSession().getAttribute("account");
+        OrderDAO od = new OrderDAO();
+        
+        List<Order> list = od.getOrderByAccount(a.getId());
+        
+        request.setAttribute("data", list);
         request.getRequestDispatcher("views/myorder.jsp").forward(request, response);
     } 
 

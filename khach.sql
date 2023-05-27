@@ -278,7 +278,6 @@ GO
 CREATE TABLE Comment (
 	id int identity (1, 1) not null,
 	content nvarchar(max),
-	rate int not null,
 	createDate date not null,
 	updateDate date not null,
 	isPublished bit not null,
@@ -476,12 +475,31 @@ INSERT INTO [dbo].[Post]
 VALUES
 		(N'CA SĨ SOOBIN HOÀNG SƠN VÀ RAPPER GONZO LỰA CHỌN HAI PHIÊN BẢN SIÊU HOT TẠI NEYMARSPORT'
 		, N'Không chỉ là nơi tìm kiếm những siêu phẩm đá banh ưng ý, Neymarsport - cửa hàng thời trang bóng đá chính hãng, còn là địa chỉ mua hàng quen thuộc của những người yêu mến thể thao. Mới đây, tại sân Trí Hải - Quận 2, Anh Đại Neymar đã có dịp gặp gỡ lại và giao giày cho hai vị khách đặc biệt, cũng là những đồng đội đã gắn kết từ lâu, đó chính là ca sĩ Soobin Hoàng Sơn và Rapper Gonzo. Đây đều là những nghệ sĩ nổi tiếng, không chỉ với tài năng nghệ thuật mà còn có niềm đam mê với bộ môn thể thao vua - bóng đá. Hãy cùng khám phá xem 2 vị khách quen thuộc nhà Neymarsport sẽ lựa chọn phiên bản giày đá banh nào nhé!' 
-		,'' , '2023/05/22' ,'2023/05/22' ,1 ,100 ,1000 , 1),
+		,'' , '2023/05/22' ,'2023/05/22' ,1 ,10 ,15 , 1),
 		(N'TUYỂN THỦ FUTSAL PIVO NGUYỄN MINH TRÍ LỰA CHỌN GIÀY ĐÁ BANH X MUNICH TẠI NEYMARSPORT'
 		, N'Nguyễn Minh Trí, Pivo hàng đầu của bóng đá Futsal Việt Nam, nhờ kỹ thuật tinh tế và khả năng ghi bàn sắc bén, anh thành công đưa tên tuổi của futsal Việt lên tầm cao mới. Đặc biệt, với góp công trong chiến tích lọt vào vòng 1/8 Futsal World Cup 2021 của ĐT Việt Nam, anh đã nhận được Quả bóng vàng và được mệnh danh là  ''pháo hạng nặng'' của futsal Việt Nam.Bóng đá Futsal, một bộ môn thể thao không chỉ đòi hỏi kỹ năng và tinh thần thi đấu, mà còn cần một đôi giày đá banh phù hợp bởi chúng giữ vai trò quan trọng trong việc quyết định hiệu suất và sự an toàn của cầu thủ. Trong bài viết này, chúng ta sẽ khám phá chi tiết về đôi giày đá banh X Munich Continental V2 43 White Grey tại Neymarsport chuyên dụng cho sân trong nhà - một sản phẩm được tuyển thủ Futsal nổi tiếng Pivo Nguyễn Minh Trí tin tưởng lựa chọn.'
-		,'' , '2023/05/22' ,'2023/05/22' ,1 ,100 ,1000 , 1),
+		,'' , '2023/05/22' ,'2023/05/22' ,1 ,20 ,300 , 1),
 		(N'''TRẢ GÓP 3 KỲ MIỄN LÃI'' - TRẢI NGHIỆM MUA SẮM THÔNG MINH, LINH HOẠT CÙNG NEYMARSPORT VÀ FUNDIIN'
 		, N'KHÔNG LÃI SUẤT - KHÔNG MẤT PHÍ - XÉT DUYỆT 5s Neymarsport - cửa hàng giày đá banh chính hãng - chính thức đồng hành cùng Fundiin mang đến giải pháp Mua trước trả sau: “Miễn phí miễn lãi - Duyệt trong 5 giây”, đảm bảo giúp khách hàng có thể trải nghiệm mua sắm an toàn, thông minh và linh hoạt hơn bao giờ hết.'
-		,'' , '2023/05/22' ,'2023/05/22' ,1 ,100 ,1000 , 1)
+		,'' , '2023/05/22' ,'2023/05/22' ,1 ,1 ,1 , 1)
 		
+GO
+
+INSERT INTO [dbo].[Post_Image] ([title] ,[url] ,[pid] ,[createDate] ,[updateDate] ,[isActive])
+VALUES
+		(N'Ảnh 01' , N'views/img/anh01.png' ,1 ,GETDATE() ,GETDATE() ,1)
+GO
+
+INSERT INTO [dbo].[Comment]	([content] ,[createDate] ,[updateDate] ,[isPublished] ,[pid] ,[aid])
+VALUES
+		(N'Làm sao để có người yêu ạ ?' ,'2023/05/22' ,'2023/05/22' ,1 ,1 ,1 ),
+		(N'Làm sao để có người yêu ạ ?' ,'2023/05/22' ,'2023/05/22' ,1 ,1 ,1 ),
+		(N'Làm sao để có người yêu ạ ?' ,'2023/05/22' ,'2023/05/22' ,2 ,1 ,1 )
+
+GO
+
+INSERT INTO [dbo].[Order] ([price] ,[status] ,[createDate] ,[firstName] ,[lastName] ,[email] ,[address] ,[phone] ,[note] ,[aid])
+VALUES
+		(100000 ,1 ,'2023/05/22' ,N'Phan' ,N'Hiếu' ,'admin@gmail.com' ,N'Hà Nội' ,'0838456798' ,N'Gói Bọc Túi Đen Che Tên Giúp ạ' ,1),
+		(1000000 ,1 ,'2023/05/22' ,N'Phan' ,N'Hiếu' ,'admin@gmail.com' ,N'Hà Nội' ,'0838456798' ,N'Gói Bọc Túi Đen Che Tên Giúp ạ' ,1)
 GO

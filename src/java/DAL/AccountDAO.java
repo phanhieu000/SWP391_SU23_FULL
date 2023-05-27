@@ -222,15 +222,15 @@ public class AccountDAO extends DBContext {
 
     public int getLastOTPByEmail(String email) {
         try {
-            
+
             String sql = "SELECT TOP(1) [id] FROM [dbo].[OTP] WHERE email = ? ORDER BY id DESC";
-            
+
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
-            
+
             ResultSet rs = st.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 return rs.getInt(1);
             }
 
@@ -239,18 +239,18 @@ public class AccountDAO extends DBContext {
         }
         return -1;
     }
-    
+
     public String getLastOTPCodeByEmail(String email) {
         try {
-            
+
             String sql = "SELECT TOP(1) [code] FROM [dbo].[OTP] WHERE email = ? and isActive = 1 ORDER BY id DESC";
-            
+
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
-            
+
             ResultSet rs = st.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 return rs.getString(1);
             }
 
@@ -259,10 +259,10 @@ public class AccountDAO extends DBContext {
         }
         return "";
     }
-    
-    public boolean verifyAccount(String email){
+
+    public boolean verifyAccount(String email) {
         try {
-            
+
             String sql = "UPDATE [dbo].[Account]\n"
                     + "   SET [isVerify] = 1\n"
                     + " WHERE [email] = ?";
@@ -273,16 +273,15 @@ public class AccountDAO extends DBContext {
             st.executeUpdate();
 
             return true;
-            
-            
+
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         return false;
     }
-    
-    public Account getAccountByEmail(String email){
+
+    public Account getAccountByEmail(String email) {
         try {
 
             String sql = "SELECT a.[id]\n"
@@ -324,5 +323,48 @@ public class AccountDAO extends DBContext {
         }
         return null;
     }
-    
+
+    public Account getAccountByID(int id) {
+        try {
+
+            String sql = "SELECT a.[id]\n"
+                    + "      ,a.[userName]\n"
+                    + "      ,a.[password]\n"
+                    + "      ,a.[email]\n"
+                    + "      ,a.[address]\n"
+                    + "      ,a.[firstName]\n"
+                    + "      ,a.[lastName]\n"
+                    + "      ,a.[phone]\n"
+                    + "      ,a.[birthday]\n"
+                    + "      ,a.[createDate]\n"
+                    + "      ,a.[isBlock]\n"
+                    + "      ,a.[isVerify]\n"
+                    + "      ,a.[rid]\n"
+                    + "	     ,r.[title] as 'role'\n"
+                    + "      ,r.[createDate] as 'createDate_Role'\n"
+                    + "  FROM [dbo].[Account] a inner join [dbo].[Role] r\n"
+                    + "  ON a.rid = r.id\n"
+                    + "  WHERE a.id = ?";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+
+                Role role = new Role(rs.getInt("rid"), rs.getString("role"), rs.getDate("createDate_Role"));
+
+                return new Account(rs.getInt("id"), rs.getString("userName"), rs.getString("password"), rs.getString("email"), rs.getString("address"),
+                        rs.getString("firstName"), rs.getString("lastName"), rs.getString("phone"), rs.getDate("birthday"), rs.getDate("createDate"),
+                        rs.getBoolean("isBlock"), rs.getBoolean("isVerify"),
+                        role);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
 }

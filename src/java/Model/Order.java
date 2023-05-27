@@ -8,25 +8,31 @@ public class Order {
     private double price;
     private int status;
     private Date createDate;
+    private String firstName;
+    private String lastName;
+    private String email;   
     private String address;
     private String phone;
     private String note;
     
-    private Account account;
+    private int aid;
     private List<OrderLine> orderLine;
 
     public Order() {
     }
 
-    public Order(int oid, double price, int status, Date createDate, String address, String phone, String note, Account account, List<OrderLine> orderLine) {
+    public Order(int oid, double price, int status, Date createDate, String firstName, String lastName, String email, String address, String phone, String note, int aid, List<OrderLine> orderLine) {
         this.oid = oid;
         this.price = price;
         this.status = status;
         this.createDate = createDate;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.address = address;
         this.phone = phone;
         this.note = note;
-        this.account = account;
+        this.aid = aid;
         this.orderLine = orderLine;
     }
 
@@ -62,6 +68,30 @@ public class Order {
         this.createDate = createDate;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -86,12 +116,12 @@ public class Order {
         this.note = note;
     }
 
-    public Account getAccount() {
-        return account;
+    public int getAid() {
+        return aid;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAid(int aid) {
+        this.aid = aid;
     }
 
     public List<OrderLine> getOrderLine() {
@@ -101,6 +131,8 @@ public class Order {
     public void setOrderLine(List<OrderLine> orderLine) {
         this.orderLine = orderLine;
     }
+
+    
     
     
 

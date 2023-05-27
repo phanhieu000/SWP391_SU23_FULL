@@ -157,6 +157,9 @@ public class Account {
         this.role = role;
     }
     
+    public String getFullName(){
+        return firstName + " " + lastName;
+    }
     
 
 }

@@ -4,7 +4,7 @@ public class OrderLine {
 
     private int olid;
     private int oid;
-    private Product product;
+    private int pid;
     private int quantity;
     private double price;
     private String size;
@@ -13,16 +13,15 @@ public class OrderLine {
     public OrderLine() {
     }
 
-    public OrderLine(int olid, int oid, Product product, int quantity, double price, String size, String color) {
+    public OrderLine(int olid, int oid, int pid, int quantity, double price, String size, String color) {
         this.olid = olid;
         this.oid = oid;
-        this.product = product;
+        this.pid = pid;
         this.quantity = quantity;
         this.price = price;
         this.size = size;
         this.color = color;
     }
-    
     
 
     public int getOlid() {
@@ -41,13 +40,15 @@ public class OrderLine {
         this.oid = oid;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getPid() {
+        return pid;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
+
+    
 
     public int getQuantity() {
         return quantity;
