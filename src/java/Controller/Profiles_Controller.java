@@ -101,7 +101,11 @@ public class Profiles_Controller extends HttpServlet {
         }
 
         if (success) {
-            request.setAttribute("message", "Update Successful !");
+            request.setAttribute("toast__message", "Update Successful !");
+            request.setAttribute("toast__type", "success");
+            request.setAttribute("toast__icons", "fa-solid fa-circle-check fa-beat");
+            request.setAttribute("toast__title", "Update Profiles");
+
         } else {
             request.setAttribute("message", "Something wrong !");
         }

@@ -10,35 +10,8 @@
 <html lang="en">
 
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <jsp:include page="common/plugins/link.jsp" />
         <title>Home</title>
-
-        <!-- Css Files -->
-        <link href="views/css/bootstrap.css" rel="stylesheet">
-        <link href="views/css/font-awesome.css" rel="stylesheet">
-        <link href="views/css/flaticon.css" rel="stylesheet">
-        <link href="views/css/slick-slider.css" rel="stylesheet">
-        <link href="views/css/fancybox.css" rel="stylesheet">
-        <link href="views/style.css" rel="stylesheet">
-        <link href="views/css/color.css" rel="stylesheet">
-        <link href="views/css/responsive.css" rel="stylesheet">
-        <!--/!--[if lte IE 9]--> <link rel="stylesheet" href="../../views/css/chosen.html"> <!--[endif]--//-->
-
-        <style>
-            .hidden-content {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                line-height: 25px;
-                -webkit-line-clamp: 3;
-                height: 75px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-            }
-        </style>
-
     </head>
     <body>
 
@@ -252,17 +225,7 @@
         </div>
         <!--// Main Wrapper \\-->
 
-        <!-- jQuery (necessary for JavaScript plugins) -->
-        <script type="text/javascript" src="views/script/jquery.js"></script>
-        <script type="text/javascript" src="views/script/bootstrap.min.js"></script>
-        <script type="text/javascript" src="views/script/slick.slider.min.js"></script>
-        <script type="text/javascript" src="views/script/jquery.countdown.min.js"></script>
-        <script type="text/javascript" src="views/script/fancybox.pack.js"></script>
-        <script type="text/javascript" src="views/script/isotope.min.js"></script>
-        <script type="text/javascript" src="views/script/progressbar.js"></script>
-        <script type="text/javascript" src="views/script/counter.js"></script>
-        <script type="text/javascript" src="views/script/functions.js"></script>
-
+        <jsp:include page="common/plugins/script.jsp" />
     </body>
 
 </html>

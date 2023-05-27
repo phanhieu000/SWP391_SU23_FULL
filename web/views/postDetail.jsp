@@ -1,31 +1,11 @@
-<%-- 
-    Document   : postDetail
-    Created on : 23-05-2023, 23:59:08
-    Author     : phanh
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <jsp:include page="common/plugins/link.jsp" />
         <title>${post.title}</title>
-
-        <!-- Css Files -->
-        <link href="views/css/bootstrap.css" rel="stylesheet">
-        <link href="views/css/font-awesome.css" rel="stylesheet">
-        <link href="views/css/flaticon.css" rel="stylesheet">
-        <link href="views/css/slick-slider.css" rel="stylesheet">
-        <link href="views/css/fancybox.css" rel="stylesheet">
-        <link href="views/style.css" rel="stylesheet">
-        <link href="views/css/color.css" rel="stylesheet">
-        <link href="views/css/responsive.css" rel="stylesheet">
-
     </head>
     <body>
 
@@ -242,17 +222,7 @@
         </div>
         <!--// Main Wrapper \\-->
 
-        <!-- jQuery (necessary for JavaScript plugins) -->
-        <script type="text/javascript" src="views/script/jquery.js"></script>
-        <script type="text/javascript" src="views/script/bootstrap.min.js"></script>
-        <script type="text/javascript" src="views/script/slick.slider.min.js"></script>
-        <script type="text/javascript" src="views/script/jquery.countdown.min.js"></script>
-        <script type="text/javascript" src="views/script/fancybox.pack.js"></script>
-        <script type="text/javascript" src="views/script/isotope.min.js"></script>
-        <script type="text/javascript" src="views/script/progressbar.js"></script>
-        <script type="text/javascript" src="views/script/counter.js"></script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-        <script type="text/javascript" src="views/script/functions.js"></script>
+        <jsp:include page="common/plugins/script.jsp" />
 
     </body>
 

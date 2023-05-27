@@ -1,49 +1,25 @@
-<%-- 
-    Document   : profile
-    Created on : 23-05-2023, 18:37:06
-    Author     : phanh
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <jsp:include page="common/plugins/link.jsp" />
         <title>Profiles</title>
-
-        <!-- Css Files -->
-        <link href="views/css/bootstrap.css" rel="stylesheet">
-        <link href="views/css/font-awesome.css" rel="stylesheet">
-        <link href="views/css/flaticon.css" rel="stylesheet">
-        <link href="views/css/slick-slider.css" rel="stylesheet">
-        <link href="views/css/fancybox.css" rel="stylesheet">
-        <link href="views/style.css" rel="stylesheet">
-        <link href="views/css/color.css" rel="stylesheet">
-        <link href="views/css/responsive.css" rel="stylesheet">
-
     </head>
     <body>
-
-        <!--// Main Wrapper \\-->
+        
         <div class="sportsmagazine-main-wrapper">
 
             <!--// Header \\-->
             <jsp:include page="common/header/header.jsp" />
             <!--// Header \\-->
-
-
-
+            
             <!--// Main Content \\-->
             <div class="sportsmagazine-main-content">
                 <!--// Main Section \\-->
                 <div class="sportsmagazine-main-section sportsmagazine-account-full">
                     <div class="container">
                         <div class="row">
-
                             <div class="col-md-12">
                                 <!--// Tabs \\-->
                                 <div class="sportsmagazine-account-tabs">
@@ -61,7 +37,6 @@
                                         <div role="tabpanel" class="tab-pane active" id="profiles">
                                             <div class="sportsmagazine-account">
                                                 <form action="" method="POST">
-
                                                     <ul>
                                                         <li>
                                                             <label>Your Email</label>
@@ -102,31 +77,24 @@
                                                         </li>
 
                                                         <li class="d-flex justify-content-center">
-                                                            <span style="color: ${message == 'Something wrong !' ? 'red' : 'green'}">
-                                                                ${message}
-                                                            </span>
+                                                            <span id="message" >${toast__message}</span>
                                                         </li>
                                                         <br>
-                                                        <li>
+                                                        <li style="float: unset; margin-right: auto; margin-left: auto; width: fit-content;">
                                                             <input value="Save" type="submit">
                                                         </li>
                                                     </ul>
                                                 </form>
                                             </div>
                                         </div>
-                                        
-                                        
                                     </div>
                                 </div>
                                 <!--// Tabs \\-->
                             </div>
-
-
                         </div>
                     </div>
                 </div>
                 <!--// Main Section \\-->
-
             </div>
             <!--// Main Content \\-->
 
@@ -136,20 +104,8 @@
 
             <div class="clearfix"></div>
         </div>
-        <!--// Main Wrapper \\-->
-        
-        <!-- jQuery (necessary for JavaScript plugins) -->
-        <script type="text/javascript" src="views/script/jquery.js"></script>
-        <script type="text/javascript" src="views/script/bootstrap.min.js"></script>
-        <script type="text/javascript" src="views/script/slick.slider.min.js"></script>
-        <script type="text/javascript" src="views/script/jquery.countdown.min.js"></script>
-        <script type="text/javascript" src="views/script/fancybox.pack.js"></script>
-        <script type="text/javascript" src="views/script/isotope.min.js"></script>
-        <script type="text/javascript" src="views/script/progressbar.js"></script>
-        <script type="text/javascript" src="views/script/counter.js"></script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-        <script type="text/javascript" src="views/script/functions.js"></script>
 
+        <jsp:include page="common/plugins/script.jsp" />
     </body>
 
 </html>
